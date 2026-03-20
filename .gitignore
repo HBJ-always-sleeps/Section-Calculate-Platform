@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 # Python
 __pycache__/
 *.py[cod]
@@ -42,7 +41,12 @@ env/
 # OS
 .DS_Store
 Thumbs.db
-=======
+
+# Other
 .aider*
 .env
->>>>>>> Stashed changes
+
+# Large files (>100MB) - excluded from Git
+测试文件/legacy_tests/断面算量测试L.dxf
+测试文件/legacy_tests/断面算量测试L_RESULT.dxf
+测试文件/legacy_tests/断面算量测试L_填充完成.dxf
