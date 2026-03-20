@@ -1,0 +1,5 @@
+{
+  "name": "航道断面算量自动化平台",
+  "description": "航道断面算量自动化平台，支持断面合并、批量粘贴、快速填充、分类算量及分层算量。",
+  "requestFramePermissions": []
+}

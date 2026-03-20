@@ -1,0 +1,7 @@
+*.obj
+*.exp
+*.pch
+*.idb
+*.pdb
+*.tlog
+*.lastbuildstate
