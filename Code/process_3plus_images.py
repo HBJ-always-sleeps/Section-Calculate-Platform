@@ -1,0 +1,234 @@
+import os
+import random
+from PIL import Image, ImageDraw, ImageFont
+from datetime import datetime
+from pathlib import Path
+
+# 网络路径
+BASE_DIR = Path(r"\\Beihai01\广西北海-测量资料\2、报测量公司文件\8、测量照片\设备照片\2026年一季度设备照片")
+INPUT_DIR = BASE_DIR / "3+"
+OUTPUT_DIR = BASE_DIR / "3月_已加水印"
+
+# 水印配置
+COMPANY_NAME = "广西渤海农业发展有限公司"
+DATE = datetime(2026, 4, 2)
+WEEKDAY = "星期四"
+
+# 子文件夹配置：文件夹名 -> 起始时间(小时, 分钟)
+FOLDER_CONFIG = {
+    "保养": (17, 20),  # 17:20开始
+    "码": (17, 45),    # 17:45开始
+    "通电": (16, 3),   # 16:03开始
+}
+
+def increment_time(hours, minutes, offset_minutes):
+    """增加指定分钟数"""
+    total_minutes = hours * 60 + minutes + offset_minutes
+    new_hours = total_minutes // 60
+    new_minutes = total_minutes % 60
+    return new_hours, new_minutes
+
+def add_watermark(pil_im, date_obj, weekday_str, hours, minutes):
+    """添加水印"""
+    draw = ImageDraw.Draw(pil_im)
+    w, h = pil_im.size
+    
+    time_str = f"{hours:02d}:{minutes:02d}"
+    date_str = date_obj.strftime("%Y-%m-%d")
+    
+    font_paths = [
+        'C:/Windows/Fonts/msyh.ttc',
+        'C:/Windows/Fonts/msyhbd.ttc',
+        'C:/Windows/Fonts/simhei.ttf',
+    ]
+    
+    font_time = None
+    font_info = None
+    
+    for font_path in font_paths:
+        if os.path.exists(font_path):
+            try:
+                font_time = ImageFont.truetype(font_path, 240)
+                font_info = ImageFont.truetype(font_path, 68)
+                break
+            except:
+                continue
+    
+    if font_time is None:
+        font_time = ImageFont.load_default()
+        font_info = ImageFont.load_default()
+    
+    bottom_margin = int(h * 0.055)
+    
+    date_text = f"{date_str} {weekday_str}"
+    bbox_date = draw.textbbox((0, 0), date_text, font=font_info)
+    date_width = bbox_date[2] - bbox_date[0]
+    date_height = bbox_date[3] - bbox_date[1]
+    
+    bbox_company = draw.textbbox((0, 0), COMPANY_NAME, font=font_info)
+    company_width = bbox_company[2] - bbox_company[0]
+    company_height = bbox_company[3] - bbox_company[1]
+    
+    icon_width = 40
+    line_spacing = 40
+    icon_company_spacing = 16
+    line_width = date_width + line_spacing + icon_width + icon_company_spacing + company_width
+    line_x = (w - line_width) // 2
+    
+    line_y = h - max(date_height, company_height) - bottom_margin
+    
+    date_x = line_x
+    date_y = line_y
+    icon_x = line_x + date_width + line_spacing + icon_width // 2
+    icon_y = line_y + company_height // 2
+    company_x = icon_x + icon_width // 2 + icon_company_spacing
+    company_y = line_y
+    
+    bbox_time = draw.textbbox((0, 0), time_str, font=font_time)
+    time_width = bbox_time[2] - bbox_time[0]
+    time_height = bbox_time[3] - bbox_time[1]
+    time_x = (w - time_width) // 2
+    time_y = line_y - time_height - int(h * 0.025)
+    
+    draw.text((time_x, time_y), time_str, font=font_time, fill=(255, 255, 255))
+    draw.text((date_x, date_y), date_text, font=font_info, fill=(255, 255, 255))
+    
+    circle_radius = 12
+    draw.ellipse([icon_x - circle_radius, icon_y - circle_radius - 8, 
+                  icon_x + circle_radius, icon_y + circle_radius - 8], 
+                 fill=(255, 0, 0), outline=(255, 255, 255), width=4)
+    
+    triangle_points = [
+        (icon_x, icon_y + circle_radius + 12),
+        (icon_x - 8, icon_y - 4),
+        (icon_x + 8, icon_y - 4)
+    ]
+    draw.polygon(triangle_points, fill=(255, 0, 0))
+    draw.line([triangle_points[0], triangle_points[1]], fill=(255, 255, 255), width=4)
+    draw.line([triangle_points[0], triangle_points[2]], fill=(255, 255, 255), width=4)
+    
+    draw.text((company_x, company_y), COMPANY_NAME, font=font_info, fill=(255, 255, 255))
+    
+    return pil_im
+
+def process_folder(folder_name, start_hours, start_minutes):
+    """处理文件夹中的所有图片"""
+    input_dir = INPUT_DIR / folder_name
+    output_dir = OUTPUT_DIR
+    
+    if not input_dir.exists():
+        print(f"  [跳过] 目录不存在: {input_dir}")
+        return 0
+    
+    output_dir.mkdir(exist_ok=True)
+    
+    print(f"\n{'='*50}")
+    print(f"处理目录: {folder_name}")
+    print(f"日期: {DATE.strftime('%Y-%m-%d')} {WEEKDAY}")
+    
+    image_extensions = {'.jpg', '.jpeg', '.png', '.bmp', '.tiff', '.webp'}
+    
+    # 获取所有图片文件并排序
+    image_files = []
+    for filename in os.listdir(str(input_dir)):
+        if any(filename.lower().endswith(ext) for ext in image_extensions):
+            image_files.append(filename)
+    
+    image_files.sort()
+    
+    if not image_files:
+        print("  没有找到图片文件")
+        return 0
+    
+    # 通电类特殊处理
+    if folder_name == "通电":
+        special_files = {
+            "微信图片_20260403090755_200_1.jpg": (16, 51),  # 16:51
+            "微信图片_20260403091131_229_1.jpg": (16, 39),  # 16:39
+        }
+        
+        # 时间范围：16:39 到 16:51
+        min_minutes = 16 * 60 + 39  # 16:39
+        max_minutes = 16 * 60 + 51  # 16:51
+        
+        # 为非特殊图片生成随机时间
+        random_times = []
+        for idx, filename in enumerate(image_files):
+            if filename in special_files:
+                # 特殊图片使用固定时间
+                hours, minutes = special_files[filename]
+                random_times.append((hours, minutes))
+            else:
+                # 非特殊图片随机时间
+                rand_minutes = random.randint(min_minutes, max_minutes)
+                hours = rand_minutes // 60
+                minutes = rand_minutes % 60
+                random_times.append((hours, minutes))
+        
+        print(f"时间范围: 16:39 - 16:51 (随机)")
+        
+        processed = 0
+        for idx, filename in enumerate(image_files):
+            img_path = input_dir / filename
+            
+            try:
+                pil_im = Image.open(str(img_path))
+                if pil_im.mode != 'RGB':
+                    pil_im = pil_im.convert('RGB')
+                
+                hours, minutes = random_times[idx]
+                watermarked = add_watermark(pil_im, DATE, WEEKDAY, hours, minutes)
+                
+                output_path = output_dir / filename
+                watermarked.save(str(output_path), quality=95)
+                
+                processed += 1
+                special_mark = " ★" if filename in special_files else ""
+                print(f"  [OK] {filename} ({hours:02d}:{minutes:02d}){special_mark}")
+                
+            except Exception as e:
+                print(f"  [ERR] {filename}: {str(e)}")
+        
+        return processed
+    else:
+        # 保养和码类保持原来的间隔一分钟逻辑
+        print(f"起始时间: {start_hours:02d}:{start_minutes:02d}")
+        
+        processed = 0
+        for idx, filename in enumerate(image_files):
+            img_path = input_dir / filename
+            
+            try:
+                pil_im = Image.open(str(img_path))
+                if pil_im.mode != 'RGB':
+                    pil_im = pil_im.convert('RGB')
+                
+                hours, minutes = increment_time(start_hours, start_minutes, idx)
+                watermarked = add_watermark(pil_im, DATE, WEEKDAY, hours, minutes)
+                
+                output_path = output_dir / filename
+                watermarked.save(str(output_path), quality=95)
+                
+                processed += 1
+                print(f"  [OK] {filename} ({hours:02d}:{minutes:02d})")
+                
+            except Exception as e:
+                print(f"  [ERR] {filename}: {str(e)}")
+        
+        return processed
+
+def main():
+    print("处理3+文件夹中的图片...")
+    print(f"基础目录: {BASE_DIR}")
+    print(f"输出目录: {OUTPUT_DIR}")
+    
+    total = 0
+    for folder_name, (start_h, start_m) in FOLDER_CONFIG.items():
+        count = process_folder(folder_name, start_h, start_m)
+        total += count
+    
+    print(f"\n{'='*50}")
+    print(f"全部完成！共处理 {total} 张图片")
+
+if __name__ == "__main__":
+    main()

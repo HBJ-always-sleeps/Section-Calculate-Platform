@@ -34,6 +34,13 @@ class Config:
     DEFAULT_FINAL_SECTION = "AA_最终断面线"
     AREA_SCALE_FACTOR = 1.0
     
+    # 自适应缩放比例检测相关参数
+    AUTO_SCALE_ENABLED = True  # 是否启用自动缩放检测
+    REFERENCE_SECTION_LENGTH = 200.0  # 参考断面线长度（用于检测缩放比例）
+    REFERENCE_SECTION_GAP = 35.0  # 参考断面间距（用于检测缩放比例）
+    # 验证结果（2026-03-28）：标准DMX间距约35单位，桩号间距约35单位
+    # 面积比例0.6文件检测比值0.774，与√0.6=0.7746高度吻合
+    
     HIGH_CONTRAST_COLORS = [
         (255, 0, 0), (0, 200, 0), (0, 0, 255), (255, 255, 0), (255, 0, 255), (0, 255, 255),
         (255, 128, 0), (128, 0, 255), (0, 128, 255), (255, 0, 128), (128, 255, 0), (0, 255, 128),
@@ -167,6 +174,61 @@ class LayerExtractor:
                     results.append({'entity': e, 'x': sum(p[0] for p in pts)/len(pts), 'y': sum(p[1] for p in pts)/len(pts)})
             except: pass
         return results
+
+
+class ScaleDetector:
+    """缩放比例检测器"""
+    
+    @staticmethod
+    def detect_scale_factor(msp, section_layer='DMX'):
+        """自动检测图纸缩放比例
+        
+        通过分析断面线的平均长度和间距来推断缩放比例
+        
+        Returns:
+            float: 缩放比例因子（相对于标准比例1.0）
+        """
+        try:
+            # 获取所有断面线
+            section_lines = []
+            for e in msp.query(f'LWPOLYLINE LINE[layer=="{section_layer}"]'):
+                ls = EntityHelper.to_linestring(e)
+                if ls and ls.length > 10:  # 过滤太短的线
+                    section_lines.append(ls)
+            
+            if len(section_lines) < 3:
+                return 1.0  # 样本不足，返回默认值
+            
+            # 计算平均长度
+            avg_length = sum(l.length for l in section_lines) / len(section_lines)
+            
+            # 计算断面间距
+            y_centers = []
+            for line in section_lines:
+                bounds = line.bounds
+                y_centers.append((bounds[1] + bounds[3]) / 2)
+            y_centers.sort(reverse=True)
+            
+            if len(y_centers) >= 2:
+                gaps = [y_centers[i] - y_centers[i+1] for i in range(len(y_centers)-1)]
+                avg_gap = sum(gaps) / len(gaps)
+            else:
+                avg_gap = Config.REFERENCE_SECTION_GAP
+            
+            # 通过长度和间距双重推断缩放比例
+            length_scale = avg_length / Config.REFERENCE_SECTION_LENGTH
+            gap_scale = avg_gap / Config.REFERENCE_SECTION_GAP
+            
+            # 取两者平均值作为最终缩放比例
+            scale_factor = (length_scale + gap_scale) / 2
+            
+            # 限制在合理范围内
+            scale_factor = max(0.1, min(5.0, scale_factor))
+            
+            return scale_factor
+            
+        except Exception:
+            return 1.0
 
 
 class StationMatcher:
@@ -455,58 +517,6 @@ class RulerDetector:
         return (lambda elev: a * elev + b, lambda y: (y - b) / a)
 
 
-class VirtualBoxBuilder:
-    """虚拟断面框构建器"""
-    
-    @staticmethod
-    def build_from_overexcav(overexc_lines):
-        """从超挖线构建虚拟断面框"""
-        if not overexc_lines: return []
-        
-        line_info = []
-        for line in overexc_lines:
-            bounds = line.bounds
-            line_info.append({
-                'line': line,
-                'mid_x': (bounds[0] + bounds[2]) / 2,
-                'mid_y': (bounds[1] + bounds[3]) / 2,
-                'bounds': bounds
-            })
-        
-        n = len(line_info)
-        if n == 0: return []
-        if n == 1:
-            b = line_info[0]['bounds']
-            return [box(b[0], b[1], b[2], b[3])]
-        
-        # 按Y坐标聚类
-        heights = [info['bounds'][3] - info['bounds'][1] for info in line_info]
-        median_height = sorted(heights)[len(heights)//2]
-        cluster_threshold = median_height * 1.5
-        
-        sorted_by_y = sorted(line_info, key=lambda x: x['mid_y'], reverse=True)
-        clusters = [[sorted_by_y[0]]]
-        
-        for i in range(1, len(sorted_by_y)):
-            y_gap = abs(sorted_by_y[i]['mid_y'] - sorted_by_y[i-1]['mid_y'])
-            if y_gap < cluster_threshold:
-                clusters[-1].append(sorted_by_y[i])
-            else:
-                clusters.append([sorted_by_y[i]])
-        
-        virtual_boxes = []
-        for cluster in clusters:
-            all_coords = [pt for info in cluster for pt in list(info['line'].coords)]
-            if all_coords:
-                min_x = min(c[0] for c in all_coords)
-                max_x = max(c[0] for c in all_coords)
-                min_y = min(c[1] for c in all_coords)
-                max_y = max(c[1] for c in all_coords)
-                virtual_boxes.append(box(min_x, min_y, max_x, max_y))
-        
-        return virtual_boxes
-
-
 # ==================== 1. 断面线合并 (autoline) ====================
 
 def run_autoline(params, LOG):
@@ -588,21 +598,26 @@ def run_autoline(params, LOG):
 # ==================== 2. 批量粘贴 (autopaste) ====================
 
 def run_autopaste(params, LOG):
-    """批量粘贴任务 - 通过红线-0.00-桩号的匹配链实现精确定位"""
+    """批量粘贴任务 v2 - 成套对应粘贴，自动检测基点和桩号匹配
+    
+    核心逻辑：
+    1. 源文件：自动检测小矩形基点 + 桩号标注
+    2. 目标文件：自动检测L1脊梁线交点基点 + 桩号标注
+    3. 通过桩号值匹配：源套组 <-> 目标套组
+    
+    无需手动输入定位参数，全自动匹配
+    """
     try:
         # 获取参数
         src_path = params.get('源文件名')
         dst_path = params.get('目标文件名')
+        # 优先使用用户输入的图层名，如果为空则使用默认值
+        output_layer_input = params.get('输出图层名', '')
+        output_layer = output_layer_input if output_layer_input.strip() else '0-已粘贴断面'
+        output_dir = params.get('输出目录')
         
-        # 参考点参数（关键定位参数）
-        s00x = float(params.get('源端0点X', 86.854))
-        s00y_first = float(params.get('源端0点Y', -15.062))
-        sbx_ref = float(params.get('源端基点X', 86.003))
-        sby_first = float(params.get('源端基点Y', -35.298))
-        step_y = float(params.get('断面间距', -148.476))
-        
-        dty_ref = float(params.get('目标桩号Y', -1470.529))
-        dby_ref = float(params.get('目标基点Y', -1363.500))
+        LOG(f"[INFO] 输出图层名（用户输入）: '{output_layer_input}'")
+        LOG(f"[INFO] 实际使用图层名: '{output_layer}'")
         
         if not src_path or not dst_path:
             LOG("[ERROR] 请先选择源文件和目标文件")
@@ -612,159 +627,343 @@ def run_autopaste(params, LOG):
             LOG(f"[ERROR] 找不到源文件: {src_path}")
             return
         
-        LOG(f"正在读取源文件: {os.path.basename(src_path)} ...")
+        LOG(f"[INFO] 源文件: {os.path.basename(src_path)}")
+        LOG(f"[INFO] 目标文件: {os.path.basename(dst_path)}")
+        
+        # 读取文件
         src_doc = ezdxf.readfile(src_path)
+        dst_doc = ezdxf.readfile(dst_path) if os.path.exists(dst_path) else ezdxf.new()
         src_msp = src_doc.modelspace()
-        
-        # 计算源端基点偏移量
-        src_dx = sbx_ref - s00x
-        src_dy = sby_first - s00y_first
-        
-        # 计算目标端Y偏移量（目标基点Y - 目标桩号Y）
-        dist_y = dby_ref - dty_ref
-        
-        LOG(f"[INFO] 源端偏移: dx={src_dx:.3f}, dy={src_dy:.3f}")
-        LOG(f"[INFO] 目标端Y偏移: dist_y={dist_y:.3f}")
-        
-        station_pattern = re.compile(r'(\d+\+\d+)')
-        
-        # ===== 第一步：探测源端断面 =====
-        LOG("[SCAN] 探测源端断面...")
-        all_src_texts = list(src_msp.query('TEXT MTEXT'))
-        sections = {}
-        
-        for i in range(1000):  # 最多探测1000个断面
-            curr_y_limit = s00y_first + (i * step_y)
-            m_id, nav_00 = None, None
-            
-            for t in all_src_texts:
-                try:
-                    p = EntityHelper.get_best_point(t)
-                    if abs(p[1] - curr_y_limit) < 60:  # Y坐标容差60
-                        content = EntityHelper.get_text(t).strip()
-                        # 匹配桩号ID (.TIN文本)
-                        if ".TIN" in content.upper() and abs(p[0] - 75.5) < 40:  # X坐标约75.5
-                            m = station_pattern.search(content)
-                            if m:
-                                m_id = m.group(1)
-                        # 匹配0.00导航点
-                        if content == "0.00" and abs(p[0] - s00x) < 20:  # X坐标容差20
-                            nav_00 = p
-                except: pass
-            
-            if nav_00 is None:
-                LOG(f"[INFO] 探测结束，共找到 {len(sections)} 个断面潜在区域")
-                break
-            
-            if m_id:
-                sections[m_id] = {
-                    "bx": nav_00[0] + src_dx,  # 基点X = 0.00 X + 偏移
-                    "by": nav_00[1] + src_dy,  # 基点Y = 0.00 Y + 偏移
-                    "ents": []
-                }
-        
-        LOG(f"  源端断面: {len(sections)}个")
-        
-        # ===== 第二步：实体分配（分配红线到各断面） =====
-        LOG("[SCAN] 提取红线实体 (Color 1)...")
-        red_lines = [e for e in src_msp.query('LWPOLYLINE') if e.dxf.color == 1]
-        LOG(f"  红线数量: {len(red_lines)}条")
-        
-        if not red_lines:
-            LOG("[ERROR] 未找到源端红线（color=1的LWPOLYLINE）")
-            return
-        
-        # 按Y坐标排序断面（从上到下）
-        sorted_mids = sorted(sections.keys(), key=lambda k: sections[k]["by"], reverse=True)
-        
-        # 将红线分配到最近的断面
-        for red in red_lines:
-            pts = list(red.get_points())
-            avg_y = sum(p[1] for p in pts) / len(pts)
-            
-            best_mid = None
-            min_dist = 100  # 距离容差100
-            
-            for mid in sorted_mids:
-                # 红线应该在断面基点下方约40单位处
-                d = abs(avg_y - (sections[mid]["by"] - 40))
-                if d < min_dist:
-                    min_dist = d
-                    best_mid = mid
-                # 如果红线Y已经超过当前断面太多，停止搜索
-                if avg_y > sections[mid]["by"] + 100:
-                    break
-            
-            if best_mid:
-                sections[best_mid]["ents"].append(red)
-        
-        # 统计分配结果
-        assigned_count = sum(1 for s in sections.values() if s["ents"])
-        LOG(f"  分配红线到断面: {assigned_count}个断面有红线")
-        
-        # ===== 第三步：读取目标文件 =====
-        if not os.path.exists(dst_path):
-            LOG(f"[ERROR] 目标文件不存在: {dst_path}")
-            return
-        
-        LOG(f"正在读取目标文件: {os.path.basename(dst_path)} ...")
-        dst_doc = ezdxf.readfile(dst_path)
         dst_msp = dst_doc.modelspace()
         
-        # ===== 第四步：收集目标端桩号 =====
-        LOG("[SCAN] 收集目标端桩号...")
-        dst_index = {}  # {桩号ID: (x, y)}
-        for lb in dst_msp.query('TEXT MTEXT'):
+        # ===== 第一步：检测源文件成套数据 =====
+        LOG("[SCAN] 检测源文件小矩形和断面曲线...")
+        
+        # 检测小矩形（XSECTION图层）
+        small_rects = []
+        for e in src_msp.query('LWPOLYLINE[layer=="XSECTION"]'):
             try:
-                txt = EntityHelper.get_text(lb).upper()
-                m = station_pattern.search(txt)
-                if m:
-                    pt = EntityHelper.get_best_point(lb)
-                    dst_index[m.group(1)] = pt
+                pts = [(p[0], p[1]) for p in e.get_points()]
+                if len(pts) >= 4:
+                    xs = [p[0] for p in pts]
+                    ys = [p[1] for p in pts]
+                    width = max(xs) - min(xs)
+                    height = max(ys) - min(ys)
+                    if 130 < width < 200 and 95 <= height < 140:  # 小矩形尺寸范围
+                        center_x = (min(xs) + max(xs)) / 2
+                        top_y = max(ys)
+                        small_rects.append({
+                            'entity': e,
+                            'bbox': (min(xs), min(ys), max(xs), max(ys)),
+                            'basepoint': (center_x, top_y),
+                            'center_y': (min(ys) + max(ys)) / 2
+                        })
             except: pass
         
-        LOG(f"  目标端桩号: {len(dst_index)}个")
+        LOG(f"  小矩形数量: {len(small_rects)}")
         
-        # ===== 第五步：匹配并粘贴 =====
+        # 按Y排序（从大到小）
+        small_rects.sort(key=lambda r: r['center_y'], reverse=True)
+        
+        # 检测断面曲线（红蓝线 + >50顶点）
+        # 红线 color=1，蓝线 color=5
+        curves = []
+        
+        # 方法1：按颜色检测（红线color=1，蓝线color=5）
+        LOG("[SCAN] 提取红线/蓝线实体...")
+        red_lines = []
+        blue_lines = []
+        
+        for e in src_msp.query('LWPOLYLINE'):
+            try:
+                color = e.dxf.color
+                pts = [(p[0], p[1]) for p in e.get_points()]
+                if len(pts) > 50:
+                    xs = [p[0] for p in pts]
+                    ys = [p[1] for p in pts]
+                    curve_data = {
+                        'entity': e,
+                        'bbox': (min(xs), min(ys), max(xs), max(ys)),
+                        'center': ((min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2),
+                        'color': color
+                    }
+                    if color == 1:  # 红线
+                        red_lines.append(curve_data)
+                    elif color == 5:  # 蓝线
+                        blue_lines.append(curve_data)
+                    curves.append(curve_data)  # 也添加到总体列表
+            except: pass
+        
+        LOG(f"  红线数量(color=1): {len(red_lines)}条")
+        LOG(f"  蓝线数量(color=5): {len(blue_lines)}条")
+        
+        # 方法2：如果按颜色检测不到，则按图层检测（XSECTION图层）
+        if not curves:
+            LOG("[SCAN] 按颜色未检测到断面曲线，尝试按图层检测...")
+            for e in src_msp.query('LWPOLYLINE[layer=="XSECTION"]'):
+                try:
+                    pts = [(p[0], p[1]) for p in e.get_points()]
+                    if len(pts) > 50:
+                        xs = [p[0] for p in pts]
+                        ys = [p[1] for p in pts]
+                        curves.append({
+                            'entity': e,
+                            'bbox': (min(xs), min(ys), max(xs), max(ys)),
+                            'center': ((min(xs) + max(xs)) / 2, (min(ys) + max(ys)) / 2),
+                            'color': e.dxf.color
+                        })
+                except: pass
+            LOG(f"  XSECTION图层曲线数量: {len(curves)}")
+        
+        LOG(f"  断面曲线总数: {len(curves)}")
+        
+        # 检测桩号标注（格式：00+000.TIN）
+        station_pattern_src = re.compile(r'(\d+)\+(\d+)\.TIN', re.IGNORECASE)
+        station_values = set()
+        for e in src_msp.query('TEXT'):
+            try:
+                text = e.dxf.text
+                m = station_pattern_src.search(text)
+                if m:
+                    station_value = int(m.group(1)) * 1000 + int(m.group(2))
+                    station_values.add(station_value)
+            except: pass
+        
+        sorted_station_values = sorted(station_values)
+        LOG(f"  桩号标注数量: {len(sorted_station_values)}")
+        
+        # 构建源套组（小矩形Y顺序 ↔ 桩号值顺序一对一）
+        source_sets = []
+        for i, rect in enumerate(small_rects):
+            # 匹配断面曲线
+            rect_bbox = rect['bbox']
+            best_curve = None
+            for curve in curves:
+                if (rect_bbox[0] < curve['center'][0] < rect_bbox[2] and
+                    rect_bbox[1] < curve['center'][1] < rect_bbox[3]):
+                    best_curve = curve
+                    break
+            
+            # 匹配桩号（按顺序一对一）
+            station_value = sorted_station_values[i] if i < len(sorted_station_values) else None
+            
+            source_sets.append({
+                'basepoint': rect['basepoint'],
+                'curve_entity': best_curve['entity'] if best_curve else None,
+                'station': station_value
+            })
+        
+        # ===== 第二步：检测目标文件成套数据 =====
+        LOG("[SCAN] 检测目标文件L1脊梁线基点...")
+        
+        # 检测L1脊梁线
+        horizontal_lines = []
+        vertical_lines = []
+        
+        for e in dst_msp.query('*[layer=="L1"]'):
+            try:
+                if e.dxftype() == 'LINE':
+                    x1, y1 = e.dxf.start.x, e.dxf.start.y
+                    x2, y2 = e.dxf.end.x, e.dxf.end.y
+                    
+                    width = abs(x2 - x1)
+                    height = abs(y2 - y1)
+                    
+                    if width > height * 3:  # 水平线
+                        horizontal_lines.append({
+                            'entity': e,
+                            'y': (y1 + y2) / 2,
+                            'x_min': min(x1, x2),
+                            'x_max': max(x1, x2)
+                        })
+                    elif height > width * 3:  # 垂直线
+                        vertical_lines.append({
+                            'entity': e,
+                            'x': (x1 + x2) / 2,
+                            'y_center': (y1 + y2) / 2
+                        })
+            except: pass
+        
+        LOG(f"  L1水平线数量: {len(horizontal_lines)}")
+        LOG(f"  L1垂直线数量: {len(vertical_lines)}")
+        
+        # 排序
+        horizontal_lines.sort(key=lambda l: l['y'], reverse=True)
+        vertical_lines.sort(key=lambda l: l['x'])
+        
+        # 计算交点（一对一匹配）
+        basepoints = []
+        used_h_indices = set()
+        
+        for v_line in vertical_lines:
+            v_x = v_line['x']
+            v_y_center = v_line['y_center']
+            
+            best_h_idx = -1
+            best_y_diff = float('inf')
+            
+            for h_idx, h_line in enumerate(horizontal_lines):
+                if h_idx in used_h_indices:
+                    continue
+                
+                y_diff = abs(h_line['y'] - v_y_center)
+                if y_diff < best_y_diff:
+                    best_y_diff = y_diff
+                    best_h_idx = h_idx
+            
+            if best_h_idx >= 0 and best_y_diff < 50:
+                used_h_indices.add(best_h_idx)
+                h_line = horizontal_lines[best_h_idx]
+                basepoints.append({'x': v_x, 'y': h_line['y']})
+        
+        LOG(f"  L1基点数量: {len(basepoints)}")
+        
+        # 检测目标桩号标注（格式：K00+000）
+        station_pattern_dst = re.compile(r'K(\d+)\+(\d+)', re.IGNORECASE)
+        station_texts = []
+        for e in dst_msp.query('TEXT'):
+            try:
+                text = e.dxf.text
+                m = station_pattern_dst.search(text)
+                if m:
+                    station_value = int(m.group(1)) * 1000 + int(m.group(2))
+                    station_texts.append({
+                        'value': station_value,
+                        'x': e.dxf.insert.x,
+                        'y': e.dxf.insert.y
+                    })
+            except: pass
+        
+        LOG(f"  目标桩号标注数量: {len(station_texts)}")
+        
+        # 按X坐标分组匹配基点与桩号
+        bp_groups = {}
+        for bp in basepoints:
+            bp_x = bp['x']
+            assigned = False
+            for group_x in bp_groups:
+                if abs(bp_x - group_x) < 50:
+                    bp_groups[group_x].append(bp)
+                    assigned = True
+                    break
+            if not assigned:
+                bp_groups[bp_x] = [bp]
+        
+        station_groups = {}
+        for station in station_texts:
+            st_x = station['x']
+            assigned = False
+            for group_x in station_groups:
+                if abs(st_x - group_x) < 50:
+                    station_groups[group_x].append(station)
+                    assigned = True
+                    break
+            if not assigned:
+                station_groups[st_x] = [station]
+        
+        # 匹配基点与桩号
+        matched_bp_stations = {}  # (bp_x, bp_y) -> station
+        
+        for bp_group_x, bp_list in bp_groups.items():
+            best_station_group_x = None
+            best_x_diff = float('inf')
+            
+            for station_group_x in station_groups:
+                x_diff = abs(bp_group_x - station_group_x)
+                if x_diff < best_x_diff:
+                    best_x_diff = x_diff
+                    best_station_group_x = station_group_x
+            
+            if best_station_group_x is not None and best_x_diff < 50:
+                station_list = station_groups[best_station_group_x]
+                bp_list.sort(key=lambda b: b['y'], reverse=True)
+                station_list.sort(key=lambda s: s['y'], reverse=True)
+                
+                for i, bp in enumerate(bp_list):
+                    if i < len(station_list):
+                        matched_bp_stations[(bp['x'], bp['y'])] = station_list[i]
+        
+        # 构建目标套组
+        target_sets = []
+        for bp in basepoints:
+            station = matched_bp_stations.get((bp['x'], bp['y']))
+            target_sets.append({
+                'basepoint': (bp['x'], bp['y']),
+                'station': station['value'] if station else None
+            })
+        
+        # ===== 第三步：桩号匹配 =====
+        LOG("[SCAN] 通过桩号值匹配源套组与目标套组...")
+        
+        source_by_station = {}
+        for s in source_sets:
+            if s['station'] is not None:
+                source_by_station[s['station']] = s
+        
+        target_by_station = {}
+        for t in target_sets:
+            if t['station'] is not None:
+                target_by_station[t['station']] = t
+        
+        LOG(f"  源桩号索引: {len(source_by_station)}")
+        LOG(f"  目标桩号索引: {len(target_by_station)}")
+        
+        matched_pairs = []
+        for station_value in sorted(source_by_station.keys()):
+            if station_value in target_by_station:
+                source_set = source_by_station[station_value]
+                target_set = target_by_station[station_value]
+                if source_set['curve_entity'] is not None:
+                    matched_pairs.append({
+                        'source': source_set,
+                        'target': target_set,
+                        'station': station_value
+                    })
+        
+        LOG(f"  匹配成功: {len(matched_pairs)}对")
+        
+        # ===== 第四步：执行粘贴 =====
         LOG("[GO] 执行粘贴...")
         
-        if "0-已粘贴断面" not in dst_doc.layers:
-            dst_doc.layers.new(name="0-已粘贴断面", dxfattribs={'color': 3})
+        # 创建输出图层
+        if output_layer not in dst_doc.layers:
+            dst_doc.layers.new(name=output_layer, dxfattribs={'color': 3})
         
-        count = 0
+        pasted_count = 0
         
-        for mid, s_data in sections.items():
-            if mid in dst_index and s_data["ents"]:
-                p_dst = dst_index[mid]
-                # 目标红线位置：X保持桩号X，Y = 桩号Y + dist_y
-                tx = p_dst[0]
-                ty = p_dst[1] + dist_y
+        for pair in matched_pairs:
+            source_bp = pair['source']['basepoint']
+            target_bp = pair['target']['basepoint']
+            curve_entity = pair['source']['curve_entity']
+            
+            # 计算偏移量
+            offset_x = target_bp[0] - source_bp[0]
+            offset_y = target_bp[1] - source_bp[1]
+            
+            # 复制断面曲线到目标位置
+            try:
+                pts = [(p[0], p[1]) for p in curve_entity.get_points()]
+                new_pts = [(p[0] + offset_x, p[1] + offset_y) for p in pts]
                 
-                # 计算平移向量
-                dx = tx - s_data["bx"]
-                dy = ty - s_data["by"]
-                
-                # 复制所有红线实体到目标位置
-                for e in s_data["ents"]:
-                    new_e = e.copy()
-                    new_e.translate(dx, dy, 0)
-                    new_e.dxf.layer = "0-已粘贴断面"
-                    new_e.dxf.color = 3
-                    dst_msp.add_entity(new_e)
-                
-                count += 1
-                if count <= 5 or count % 20 == 0:
-                    LOG(f"  [{count}] {mid}: 平移量({dx:.1f}, {dy:.1f})")
+                dst_msp.add_lwpolyline(
+                    new_pts,
+                    dxfattribs={
+                        'layer': output_layer,
+                        'color': 3
+                    }
+                )
+                pasted_count += 1
+            except: pass
         
-        # ===== 第六步：保存结果 =====
-        dst_dir = os.path.dirname(dst_path) or "."
+        # ===== 第五步：保存结果 =====
+        dst_dir = output_dir if output_dir else os.path.dirname(dst_path) or "."
         dst_basename = os.path.basename(dst_path).replace(".dxf", "")
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         save_name = os.path.join(dst_dir, f"{dst_basename}_已粘贴断面_{timestamp}.dxf")
         dst_doc.saveas(save_name)
         
         LOG(f"[OK] 处理完成！成果已保存至: {os.path.basename(save_name)}")
-        LOG(f"[STATS] 统计：共匹配并粘贴 {count} 个断面")
+        LOG(f"[STATS] 统计：共匹配 {len(matched_pairs)} 对，粘贴 {pasted_count} 个断面")
 
     except Exception as e:
         LOG(f"[ERROR] 脚本执行崩溃:\n{traceback.format_exc()}")
@@ -872,7 +1071,7 @@ def run_autohatch(params, LOG):
 # ==================== 4. 分层算量 (autosection) ====================
 
 def run_autosection(params, LOG):
-    """分层算量任务 - 支持区分/不区分设计超挖
+    """分层算量任务 - 支持区分/不区分设计超挖，支持高程线上下算量切换
     
     Args:
         params: {
@@ -880,7 +1079,7 @@ def run_autosection(params, LOG):
             '目标高程': 高程值（如-10.0），
             '断面线图层': 断面线图层名（默认DMX），
             '辅助断面图层': 辅助断面线图层列表，
-            '包络线类型': 'lower'下包络或'upper'上包络，
+            '计算模式': 'below'高程线以下或'above'高程线以上，
             '区分设计超挖': True/False，
             '输出目录': 输出路径
         }
@@ -907,7 +1106,7 @@ def run_autosection(params, LOG):
             LOG(f"[INFO] 全算量模式（未指定目标高程）")
         section_layer = params.get('断面线图层', 'DMX')
         aux_layers_str = params.get('辅助断面图层', '')
-        envelope_type = params.get('包络线类型', 'lower')  # 'lower'或'upper'
+        calc_mode = params.get('计算模式', 'below')  # 'below'高程线以下或'above'高程线以上
         distinguish_design = params.get('区分设计超挖', False)
         if isinstance(distinguish_design, str):
             distinguish_design = distinguish_design.lower() in ('true', '1', 'yes', '是')
@@ -918,7 +1117,7 @@ def run_autosection(params, LOG):
         LOG(f"[INFO] 目标高程: {target_elevation}m")
         LOG(f"[INFO] 断面线图层: {section_layer}")
         LOG(f"[INFO] 辅助断面图层: {aux_layers}")
-        LOG(f"[INFO] 包络线类型: {'下包络' if envelope_type == 'lower' else '上包络'}")
+        LOG(f"[INFO] 计算模式: {'高程线以下' if calc_mode == 'below' else '高程线以上'}")
         LOG(f"[INFO] 区分设计/超挖: {'是' if distinguish_design else '否'}")
         
         for input_path in file_list:
@@ -929,6 +1128,15 @@ def run_autosection(params, LOG):
             
             all_layers = [l.dxf.name for l in doc.layers]
             LOG(f"[INFO] 图层总数: {len(all_layers)}")
+            
+            # ===== 自适应缩放比例检测 =====
+            scale_factor = 1.0
+            if Config.AUTO_SCALE_ENABLED:
+                scale_factor = ScaleDetector.detect_scale_factor(msp, section_layer)
+                LOG(f"[INFO] 自动检测缩放比例: {scale_factor:.4f}")
+            
+            # 根据缩放比例动态调整容差参数
+            station_match_tolerance = 500 * scale_factor  # 桩号匹配容差
             
             # 获取地层图层
             strata_layers = sorted(
@@ -957,10 +1165,6 @@ def run_autosection(params, LOG):
             # 获取桩号
             station_texts = LayerExtractor.get_texts(msp, "0-桩号")
             LOG(f"[INFO] 桩号数量: {len(station_texts)}")
-            
-            # 构建虚拟断面框
-            virtual_boxes = VirtualBoxBuilder.build_from_overexcav(overexc_lines_all)
-            LOG(f"[INFO] 虚拟断面框: {len(virtual_boxes)}个")
             
             # 读取地层填充
             strata_hatches = {}
@@ -1004,9 +1208,9 @@ def run_autosection(params, LOG):
                 sect_y_center = dmx_data['y_center']
                 sect_x_center = (sect_x_min + sect_x_max) / 2
                 
-                # 桩号匹配
+                # 桩号匹配（使用自适应容差）
                 nearest_st, dist = find_nearest_station(sect_x_center, sect_y_center, processed_stations)
-                if nearest_st and dist < 500:
+                if nearest_st and dist < station_match_tolerance:
                     station = nearest_st['text'].split(";")[-1].replace("}", "").strip()
                     processed_stations.add(station)
                 else:
@@ -1023,12 +1227,12 @@ def run_autosection(params, LOG):
                     else:
                         target_line_y = 5.0 * target_elevation - 27.0
                 
-                # 生成最终断面线（合并辅助断面线）
+                # 生成最终断面线（合并辅助断面线，固定使用下包络线）
                 if aux_lines_all:
                     boundary_box = box(sect_x_min - 20, sect_y_min - 50, sect_x_max + 20, sect_y_max + 50)
                     local_aux = [l for l in aux_lines_all if boundary_box.intersects(l)]
                     if local_aux:
-                        final_section = EnvelopeGenerator.generate(dmx_data['line'], local_aux, envelope_type)
+                        final_section = EnvelopeGenerator.generate(dmx_data['line'], local_aux, 'lower')
                     else:
                         final_section = dmx_data['line']
                 else:
@@ -1061,27 +1265,52 @@ def run_autosection(params, LOG):
                 # 判断分层线位置（全算量模式直接使用整个断面区域）
                 if target_line_y is None:
                     # 全算量模式：计算整个开挖区域
-                    below_layer_open = total_open_poly
-                elif target_line_y < sect_y_min_actual:
-                    # 分层线在断面底部以下，无面积
-                    result = {'断面名称': station, '分层线高程': target_elevation, '总面积': 0.0}
-                    for layer in strata_layers:
-                        if distinguish_design:
-                            result[f'{layer}_设计'] = 0.0
-                            result[f'{layer}_超挖'] = 0.0
-                        else:
-                            result[layer] = 0.0
-                    results.append(result)
-                    continue
-                elif target_line_y >= sect_y_max_actual:
-                    # 分层线在断面顶部以上，计算整个开挖区域
-                    below_layer_open = total_open_poly
+                    layer_open = total_open_poly
+                elif calc_mode == 'below':
+                    # 高程线以下模式
+                    if target_line_y < sect_y_min_actual:
+                        # 分层线在断面底部以下，无面积
+                        result = {'断面名称': station, '分层线高程': target_elevation, '总面积': 0.0}
+                        for layer in strata_layers:
+                            if distinguish_design:
+                                result[f'{layer}_设计'] = 0.0
+                                result[f'{layer}_超挖'] = 0.0
+                            else:
+                                result[layer] = 0.0
+                        results.append(result)
+                        continue
+                    elif target_line_y >= sect_y_max_actual:
+                        # 分层线在断面顶部以上，计算整个开挖区域
+                        layer_open = total_open_poly
+                    else:
+                        # 正常分层计算：取分层线以下的区域
+                        below_layer_poly = box(sect_x_min_actual - 10, sect_y_min_actual - 100, sect_x_max_actual + 10, target_line_y)
+                        layer_open = total_open_poly.intersection(below_layer_poly)
+                elif calc_mode == 'above':
+                    # 高程线以上模式
+                    if target_line_y > sect_y_max_actual:
+                        # 分层线在断面顶部以上，无面积
+                        result = {'断面名称': station, '分层线高程': target_elevation, '总面积': 0.0}
+                        for layer in strata_layers:
+                            if distinguish_design:
+                                result[f'{layer}_设计'] = 0.0
+                                result[f'{layer}_超挖'] = 0.0
+                            else:
+                                result[layer] = 0.0
+                        results.append(result)
+                        continue
+                    elif target_line_y <= sect_y_min_actual:
+                        # 分层线在断面底部以下，计算整个开挖区域
+                        layer_open = total_open_poly
+                    else:
+                        # 正常分层计算：取分层线以上的区域
+                        above_layer_poly = box(sect_x_min_actual - 10, target_line_y, sect_x_max_actual + 10, sect_y_max_actual + 100)
+                        layer_open = total_open_poly.intersection(above_layer_poly)
                 else:
-                    # 正常分层计算
-                    below_layer_poly = box(sect_x_min_actual - 10, sect_y_min_actual - 100, sect_x_max_actual + 10, target_line_y)
-                    below_layer_open = total_open_poly.intersection(below_layer_poly)
+                    # 默认使用高程线以下模式
+                    layer_open = total_open_poly
                 
-                if below_layer_open.is_empty:
+                if layer_open.is_empty:
                     result = {'断面名称': station, '分层线高程': target_elevation, '总面积': 0.0}
                     for layer in strata_layers:
                         if distinguish_design:
@@ -1122,7 +1351,7 @@ def run_autosection(params, LOG):
                         try:
                             if not boundary_box.intersects(h_poly): continue
                             
-                            inter = h_poly.intersection(below_layer_open)
+                            inter = h_poly.intersection(layer_open)
                             if inter.is_empty: continue
                             
                             if distinguish_design and design_polygon:
@@ -1199,6 +1428,7 @@ def run_autosection(params, LOG):
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             base_name = os.path.basename(input_path).replace('.dxf', '')
             output_dxf_dir = output_dir if output_dir else os.path.dirname(input_path)
+            mode_suffix = "以上" if calc_mode == 'above' else "以下"
             output_dxf = os.path.join(output_dxf_dir, f"{base_name}_{target_elevation}m分层_{timestamp}.dxf")
             output_doc.saveas(output_dxf)
             LOG(f"[INFO] DXF文件已保存: {output_dxf}")
@@ -1206,7 +1436,7 @@ def run_autosection(params, LOG):
             # 生成Excel
             if results:
                 df = pd.DataFrame(results)
-                output_xlsx = os.path.join(output_dxf_dir, f"{base_name}_{target_elevation}m以下面积_{timestamp}.xlsx")
+                output_xlsx = os.path.join(output_dxf_dir, f"{base_name}_{target_elevation}m{mode_suffix}面积_{timestamp}.xlsx")
                 
                 with pd.ExcelWriter(output_xlsx, engine='openpyxl') as writer:
                     if distinguish_design:
@@ -1253,14 +1483,14 @@ def run_autosection(params, LOG):
                     df_summary.to_excel(writer, sheet_name='地层汇总', index=False)
                     
                     # 汇总
-                    total_data = {'统计项': ['总断面数', f'{target_elevation}m以下总面积'], '数值': [len(results), df['总面积'].sum()]}
+                    total_data = {'统计项': ['总断面数', f'{target_elevation}m{mode_suffix}总面积'], '数值': [len(results), df['总面积'].sum()]}
                     pd.DataFrame(total_data).to_excel(writer, sheet_name='汇总', index=False)
                 
                 LOG(f"[OK] 处理完成！")
                 LOG(f"   DXF: {os.path.basename(output_dxf)}")
                 LOG(f"   Excel: {os.path.basename(output_xlsx)}")
                 LOG(f"   总断面数: {len(results)}")
-                LOG(f"   {target_elevation}m以下总面积: {df['总面积'].sum():.3f} ㎡")
+                LOG(f"   {target_elevation}m{mode_suffix}总面积: {df['总面积'].sum():.3f} ㎡")
             else:
                 LOG("[WARN] 未生成任何数据")
     
@@ -1308,6 +1538,17 @@ def run_backfill(params, LOG):
             doc = ezdxf.readfile(input_path)
             msp = doc.modelspace()
             
+            # ===== 自适应缩放比例检测 =====
+            scale_factor = 1.0
+            if Config.AUTO_SCALE_ENABLED:
+                scale_factor = ScaleDetector.detect_scale_factor(msp, section_layer)
+                LOG(f"[INFO] 自动检测缩放比例: {scale_factor:.4f}")
+            
+            # 根据缩放比例动态调整容差参数
+            station_match_tolerance = 500 * scale_factor  # 桩号匹配容差
+            bbox_expand = 20 * scale_factor  # 边界框扩展值
+            section_y_expand = 50 * scale_factor  # 断面Y方向扩展
+            
             # 获取设计断面线（用于生成上包络线）
             design_lines_all = LayerExtractor.get_lines(msp, design_layer)
             design_lines_all = sorted(design_lines_all, key=lambda l: l.bounds[1], reverse=True)
@@ -1317,11 +1558,6 @@ def run_backfill(params, LOG):
             dmx_list = _get_entity_list(msp, section_layer)
             dmx_list = sorted(dmx_list, key=lambda d: d['y_center'], reverse=True)
             LOG(f"[INFO] {section_layer}数量: {len(dmx_list)}")
-            
-            # 获取超挖线构建虚拟框
-            overexc_lines_all = LayerExtractor.get_lines(msp, "超挖线")
-            virtual_boxes = VirtualBoxBuilder.build_from_overexcav(overexc_lines_all)
-            LOG(f"[INFO] 虚拟断面框: {len(virtual_boxes)}个")
             
             # 获取桩号
             station_texts = LayerExtractor.get_texts(msp, "0-桩号")

@@ -1,0 +1,1219 @@
+
+================================================================================
+文件: 目标文件 - 2026年2月月进度工程量表（提交版）
+路径: D:\断面算量平台\测试文件\2026年2月月进度工程量表（提交版）.xlsx
+================================================================================
+
+工作表列表: ['1级淤泥', '2级淤泥 ', '3级淤泥  ', '1级填土', '5级粘土', '4级填土 ', '3级粘土', '4级粘土', '6级砂', '7级砂', '8级砂', '6级碎石', '9级碎石 ']
+
+------------------------------------------------------------
+工作表: 1级淤泥
+------------------------------------------------------------
+数据形状: 509行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11       12      13       14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN
+6                                                                                序号       桩号  间距(m)  1级淤泥设计工程量      NaN     NaN      NaN  1级淤泥上期剩余工程量      NaN     NaN      NaN  1级淤泥本期剩余工程量      NaN     NaN      NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)   体积(m³)  ⾯积(m²)   体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0      NaN       0      NaN          NaN
+10                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN        0     NaN        0            0
+11                                                                                2  K67+425    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0      NaN       0      NaN          NaN
+12                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN        0     NaN        0            0
+13                                                                                3  K67+450    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0      NaN       0      NaN          NaN
+14                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN        0     NaN        0            0
+15                                                                                4  K67+475    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0      NaN       0      NaN          NaN
+16                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN        0     NaN        0            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0      NaN       0      NaN          NaN
+18                                                                              NaN      NaN     25        NaN   306.42     NaN    91.24          NaN   306.42     NaN    91.24          NaN   306.42     NaN    91.24            0
+19                                                                                6  K67+525    NaN      24.51      NaN     7.3      NaN        24.51      NaN     7.3      NaN        24.51      NaN     7.3      NaN          NaN
+20                                                                              NaN      NaN     25        NaN  1096.06     NaN   219.92          NaN  1096.06     NaN   219.92          NaN  1096.06     NaN   219.92            0
+21                                                                                7  K67+550    NaN      63.17      NaN   10.29      NaN        63.17      NaN   10.29      NaN        63.17      NaN   10.29      NaN          NaN
+22                                                                              NaN      NaN     25        NaN   1581.7     NaN    271.4          NaN   1581.7     NaN    271.4          NaN   1581.7     NaN    271.4            0
+23                                                                                8  K67+575    NaN      63.36      NaN   11.42      NaN        63.36      NaN   11.42      NaN        63.36      NaN   11.42      NaN          NaN
+24                                                                              NaN      NaN     25        NaN  2450.52     NaN   641.49          NaN  2450.52     NaN   641.49          NaN  2450.52     NaN   641.49            0
+25                                                                                9  K67+600    NaN     132.68      NaN    39.9      NaN       132.68      NaN    39.9      NaN       132.68      NaN    39.9      NaN          NaN
+26                                                                              NaN      NaN     25        NaN  3187.87     NaN  1019.55          NaN  3187.87     NaN  1019.55          NaN  3187.87     NaN  1019.55            0
+27                                                                               10  K67+625    NaN     122.35      NaN   41.66      NaN       122.35      NaN   41.66      NaN       122.35      NaN   41.66      NaN          NaN
+28                                                                              NaN      NaN     25        NaN  2986.45     NaN  1025.51          NaN  2986.45     NaN  1025.51          NaN  2986.45     NaN  1025.51            0
+29                                                                               11  K67+650    NaN     116.56      NaN   40.38      NaN       116.56      NaN   40.38      NaN       116.56      NaN   40.38      NaN          NaN
+30                                                                              NaN      NaN     25        NaN  2678.26     NaN   973.33          NaN  2678.26     NaN   973.33          NaN  2678.26     NaN   973.33            0
+31                                                                               12  K67+675    NaN       97.7      NaN   37.49      NaN         97.7      NaN   37.49      NaN         97.7      NaN   37.49      NaN          NaN
+32                                                                              NaN      NaN     25        NaN  1994.96     NaN   819.19          NaN  1994.96     NaN   819.19          NaN  1994.96     NaN   819.19            0
+33                                                                               13  K67+700    NaN       61.9      NaN   28.05      NaN         61.9      NaN   28.05      NaN         61.9      NaN   28.05      NaN          NaN
+34                                                                              NaN      NaN     25        NaN  1711.09     NaN   749.75          NaN  1711.09     NaN   749.75          NaN  1711.09     NaN   749.75            0
+35                                                                               14  K67+725    NaN      74.99      NaN   31.93      NaN        74.99      NaN   31.93      NaN        74.99      NaN   31.93      NaN          NaN
+36                                                                              NaN      NaN     25        NaN  1578.75     NaN   570.31          NaN  1578.75     NaN   570.31          NaN  1578.75     NaN   570.31            0
+37                                                                               15  K67+750    NaN      51.31      NaN   13.69      NaN        51.31      NaN   13.69      NaN        51.31      NaN   13.69      NaN          NaN
+38                                                                              NaN      NaN     25        NaN  1389.27     NaN   330.44          NaN  1389.27     NaN   330.44          NaN  1389.27     NaN   330.44            0
+39                                                                               16  K67+775    NaN      59.83      NaN   12.74      NaN        59.83      NaN   12.74      NaN        59.83      NaN   12.74      NaN          NaN
+40                                                                              NaN      NaN     25        NaN  1550.08     NaN   344.99          NaN  1550.08     NaN   344.99          NaN  1550.08     NaN   344.99            0
+41                                                                               17  K67+800    NaN      64.18      NaN   14.86      NaN        64.18      NaN   14.86      NaN        64.18      NaN   14.86      NaN          NaN
+42                                                                              NaN      NaN     25        NaN  1954.24     NaN    367.8          NaN  1920.88     NaN   367.88          NaN  1920.88     NaN   367.88            0
+43                                                                               18  K67+825    NaN      92.16      NaN   14.57      NaN        89.49      NaN   14.57      NaN        89.49      NaN   14.57      NaN          NaN
+44                                                                              NaN      NaN     25        NaN  2972.52     NaN    410.8          NaN  2468.25     NaN   410.88          NaN  2468.25     NaN   410.88            0
+45                                                                               19  K67+850    NaN     145.64      NaN    18.3      NaN       107.97      NaN    18.3      NaN       107.97      NaN    18.3      NaN          NaN
+46                                                                              NaN      NaN     25        NaN  2889.66     NaN    439.9          NaN  2237.36     NaN      440          NaN  2237.36     NaN      440            0
+47                                                                               20  K67+875    NaN      85.53      NaN    16.9      NaN        71.02      NaN    16.9      NaN        71.02      NaN    16.9      NaN          NaN
+48                                                                              NaN      NaN     25        NaN   2018.6     NaN   434.34          NaN  1837.11     NaN   434.38          NaN  1837.11     NaN   434.38            0
+49                                                                               21  K67+900    NaN      75.95      NaN   17.85      NaN        75.95      NaN   17.85      NaN        75.95      NaN   17.85      NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=248, 类型=object
+  列8: 非空值=246, 类型=object
+  列9: 非空值=247, 类型=object
+  列10: 非空值=246, 类型=object
+  列11: 非空值=248, 类型=object
+  列12: 非空值=246, 类型=object
+  列13: 非空值=247, 类型=object
+  列14: 非空值=246, 类型=object
+  列15: 非空值=247, 类型=object
+
+------------------------------------------------------------
+工作表: 2级淤泥 
+------------------------------------------------------------
+数据形状: 511行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  2级淤泥设计工程量      NaN     NaN      NaN  2级淤泥上期剩余工程量      NaN     NaN      NaN  2级淤泥本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+10                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+11                                                                                2  K67+425    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+12                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+13                                                                                3  K67+450    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+14                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+15                                                                                4  K67+475    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+16                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+18                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+19                                                                                6  K67+525    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+20                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+21                                                                                7  K67+550    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+22                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+23                                                                                8  K67+575    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+24                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=248, 类型=object
+  列8: 非空值=246, 类型=object
+  列9: 非空值=247, 类型=object
+  列10: 非空值=247, 类型=object
+  列11: 非空值=249, 类型=object
+  列12: 非空值=246, 类型=object
+  列13: 非空值=247, 类型=object
+  列14: 非空值=246, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 3级淤泥  
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  3级淤泥设计工程量      NaN     NaN      NaN  3级淤泥上期剩余工程量      NaN     NaN      NaN  3级淤泥本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+10                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+11                                                                                2  K67+425    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+12                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+13                                                                                3  K67+450    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+14                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+15                                                                                4  K67+475    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+16                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+18                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+19                                                                                6  K67+525    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+20                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+21                                                                                7  K67+550    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+22                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+23                                                                                8  K67+575    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+24                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=248, 类型=object
+  列8: 非空值=246, 类型=object
+  列9: 非空值=247, 类型=object
+  列10: 非空值=246, 类型=object
+  列11: 非空值=248, 类型=object
+  列12: 非空值=246, 类型=object
+  列13: 非空值=247, 类型=object
+  列14: 非空值=246, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 1级填土
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  1级填土设计工程量      NaN     NaN      NaN  1级填土上期剩余工程量      NaN     NaN      NaN  1级填土本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+10                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+11                                                                                2  K67+425    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+12                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+13                                                                                3  K67+450    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+14                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+15                                                                                4  K67+475    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+16                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+18                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+19                                                                                6  K67+525    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+20                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+21                                                                                7  K67+550    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+22                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+23                                                                                8  K67+575    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+24                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN        0     NaN        0          NaN       0     NaN       0            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN            0      NaN       0      NaN            0     NaN       0     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=248, 类型=object
+  列8: 非空值=246, 类型=object
+  列9: 非空值=247, 类型=object
+  列10: 非空值=246, 类型=object
+  列11: 非空值=248, 类型=object
+  列12: 非空值=246, 类型=object
+  列13: 非空值=247, 类型=object
+  列14: 非空值=246, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 5级粘土
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3         4       5        6            7         8       9        10           11         12      13       14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN       NaN     NaN      NaN          NaN       NaN     NaN      NaN          NaN        NaN     NaN      NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN       NaN     NaN      NaN          NaN       NaN     NaN      NaN          NaN        NaN     NaN      NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN       NaN     NaN      NaN          NaN       NaN     NaN      NaN          NaN        NaN     NaN      NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN       NaN     NaN      NaN          NaN       NaN     NaN      NaN          NaN        NaN     NaN      NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN       NaN     NaN      NaN          NaN       NaN     NaN      NaN          NaN        NaN     NaN      NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN       NaN     NaN      NaN          NaN       NaN     NaN      NaN          NaN        NaN     NaN      NaN          NaN
+6                                                                                序号       桩号  间距(m)  5级粘土设计工程量       NaN     NaN      NaN  5级粘土上期剩余工程量       NaN     NaN      NaN  5级粘土本期剩余工程量        NaN     NaN      NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖       NaN      超挖      NaN           开挖       NaN      超挖      NaN           开挖        NaN      超挖      NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)   工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)   工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)     体积(m³)  ⾯积(m²)   体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+10                                                                              NaN      NaN     25        NaN         0     NaN        0          NaN         0     NaN        0          NaN          0     NaN        0            0
+11                                                                                2  K67+425    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+12                                                                              NaN      NaN     25        NaN         0     NaN        0          NaN         0     NaN        0          NaN          0     NaN        0            0
+13                                                                                3  K67+450    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+14                                                                              NaN      NaN     25        NaN         0     NaN        0          NaN         0     NaN        0          NaN          0     NaN        0            0
+15                                                                                4  K67+475    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+16                                                                              NaN      NaN     25        NaN         0     NaN        0          NaN         0     NaN        0          NaN          0     NaN        0            0
+17                                                                                5  K67+500    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+18                                                                              NaN      NaN     25        NaN         0     NaN        0          NaN         0     NaN        0          NaN          0     NaN        0            0
+19                                                                                6  K67+525    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+20                                                                              NaN      NaN     25        NaN         0     NaN        0          NaN         0     NaN        0          NaN          0     NaN        0            0
+21                                                                                7  K67+550    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+22                                                                              NaN      NaN     25        NaN         0     NaN        0          NaN         0     NaN        0          NaN          0     NaN        0            0
+23                                                                                8  K67+575    NaN          0       NaN       0      NaN            0       NaN       0      NaN            0        NaN       0      NaN          NaN
+24                                                                              NaN      NaN     25        NaN         0     NaN   285.35          NaN         0     NaN   285.35          NaN          0     NaN   285.35            0
+25                                                                                9  K67+600    NaN          0       NaN   22.83      NaN            0       NaN   22.83      NaN            0        NaN   22.83      NaN          NaN
+26                                                                              NaN      NaN     25        NaN    132.39     NaN  1089.75          NaN    132.39     NaN  1089.75          NaN     132.39     NaN  1089.75            0
+27                                                                               10  K67+625    NaN      10.59       NaN   64.35      NaN        10.59       NaN   64.35      NaN        10.59        NaN   64.35      NaN          NaN
+28                                                                              NaN      NaN     25        NaN    628.54     NaN  1739.78          NaN    628.54     NaN  1739.78          NaN     628.54     NaN  1739.78            0
+29                                                                               11  K67+650    NaN      39.69       NaN   74.83      NaN        39.69       NaN   74.83      NaN        39.69        NaN   74.83      NaN          NaN
+30                                                                              NaN      NaN     25        NaN   1139.38     NaN  1884.02          NaN   1139.38     NaN  1884.02          NaN    1139.38     NaN  1884.02            0
+31                                                                               12  K67+675    NaN      51.46       NaN   75.89      NaN        51.46       NaN   75.89      NaN        51.46        NaN   75.89      NaN          NaN
+32                                                                              NaN      NaN     25        NaN   1719.61     NaN  1987.62          NaN   1719.61     NaN  1987.62          NaN    1719.61     NaN  1987.62            0
+33                                                                               13  K67+700    NaN      86.11       NaN   83.12      NaN        86.11       NaN   83.12      NaN        86.11        NaN   83.12      NaN          NaN
+34                                                                              NaN      NaN     25        NaN   5231.87     NaN  2564.75          NaN   5231.87     NaN  2564.75          NaN    5231.87     NaN  2564.75            0
+35                                                                               14  K67+725    NaN     332.44       NaN  122.06      NaN       332.44       NaN  122.06      NaN       332.44        NaN  122.06      NaN          NaN
+36                                                                              NaN      NaN     25        NaN   9065.17     NaN  3369.11          NaN   9065.17     NaN  3369.11          NaN    9065.17     NaN  3369.11            0
+37                                                                               15  K67+750    NaN     392.77       NaN  147.47      NaN       392.77       NaN  147.47      NaN       392.77        NaN  147.47      NaN          NaN
+38                                                                              NaN      NaN     25        NaN  10524.76     NaN  3796.78          NaN  10524.76     NaN  3796.78          NaN   10524.76     NaN  3796.78            0
+39                                                                               16  K67+775    NaN     449.21       NaN  156.28      NaN       449.21       NaN  156.28      NaN       449.21        NaN  156.28      NaN          NaN
+40                                                                              NaN      NaN     25        NaN  11111.61     NaN  3894.24          NaN  10963.11     NaN  3894.25          NaN  10935.125     NaN  3894.25       27.985
+41                                                                               17  K67+800    NaN     439.72       NaN  155.26      NaN       427.84       NaN  155.26      NaN        425.6        NaN  155.26      NaN          NaN
+42                                                                              NaN      NaN     25        NaN  10572.48     NaN  3882.35          NaN   9996.39     NaN  3882.38          NaN   9937.625     NaN  3882.38       58.765
+43                                                                               18  K67+825    NaN     406.07       NaN  155.33      NaN       371.87       NaN  155.33      NaN       369.41        NaN  155.33      NaN          NaN
+44                                                                              NaN      NaN     25        NaN   9447.31     NaN  3859.57          NaN   8638.07     NaN  3859.63          NaN    8387.25     NaN  3859.63       250.82
+45                                                                               19  K67+850    NaN     349.71       NaN  153.44      NaN       319.17       NaN  153.44      NaN       301.57        NaN  153.44      NaN          NaN
+46                                                                              NaN      NaN     25        NaN   9390.81     NaN  3864.79          NaN   7651.67     NaN  3864.75          NaN   7431.625     NaN  3864.75      220.045
+47                                                                               20  K67+875    NaN     401.56       NaN  155.74      NaN       292.96       NaN  155.74      NaN       292.96        NaN  155.74      NaN          NaN
+48                                                                              NaN      NaN     25        NaN  10226.31     NaN  3898.24          NaN   8023.04     NaN  3898.25          NaN    8023.04     NaN  3898.25            0
+49                                                                               21  K67+900    NaN     416.55       NaN  156.12      NaN       348.88       NaN  156.12      NaN       348.88        NaN  156.12      NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=248, 类型=object
+  列8: 非空值=246, 类型=object
+  列9: 非空值=247, 类型=object
+  列10: 非空值=246, 类型=object
+  列11: 非空值=248, 类型=object
+  列12: 非空值=246, 类型=object
+  列13: 非空值=247, 类型=object
+  列14: 非空值=246, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 4级填土 
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  4级填土设计工程量      NaN     NaN      NaN  4级填土上期剩余工程量      NaN     NaN      NaN  4级填土本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 3级粘土
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  3级粘土设计工程量      NaN     NaN      NaN  3级粘土上期剩余工程量      NaN     NaN      NaN  3级粘土本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN         54      NaN      19      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25        NaN  1391.92     NaN   392.45          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN      57.35      NaN   12.39      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25        NaN  1027.73     NaN   202.54          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN      24.87      NaN    3.81      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25        NaN   393.54     NaN    68.23          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN       6.62      NaN    1.65      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25        NaN    82.71     NaN    20.61          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 4级粘土
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  4级粘土设计工程量      NaN     NaN      NaN  4级粘土上期剩余工程量      NaN     NaN      NaN  4级粘土本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN       3.94      NaN   28.71      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25        NaN   193.63     NaN   875.32          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN      11.55      NaN   41.31      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25        NaN   353.43     NaN  1025.46          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN      16.73      NaN   40.73      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25        NaN   379.51     NaN   723.58          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN      13.63      NaN   17.16      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25        NaN   471.51     NaN   381.02          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN      24.09      NaN   13.32      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25        NaN   312.21     NaN   340.86          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN       0.89      NaN   13.95      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25        NaN   311.86     NaN   584.84          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN      24.06      NaN   32.84      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25        NaN   751.52     NaN   980.05          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN      36.06      NaN   45.56      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25        NaN   450.77     NaN   569.56          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 6级砂
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2         3         4       5        6           7        8       9        10          11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN       NaN       NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN       NaN       NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN       NaN       NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN       NaN       NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN       NaN       NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN       NaN       NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  6级砂设计工程量       NaN     NaN      NaN  6级砂上期剩余工程量      NaN     NaN      NaN  6级砂本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN        开挖       NaN      超挖      NaN          开挖      NaN      超挖      NaN          开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN    ⾯积(m²)   工程量(m³)  ⾯积(m²)  工程量(m³)      ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)      ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN    314.51       NaN  127.99      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25       NaN   8544.42     NaN  3138.25         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN    369.04       NaN  123.07      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25       NaN   9738.02     NaN  3215.83         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN       410       NaN  134.19      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25       NaN  10351.67     NaN  3683.65         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN    418.14       NaN   160.5      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25       NaN  10147.85     NaN  4070.91         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN    393.69       NaN  165.17      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25       NaN   8346.02     NaN  3133.52         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN    273.99       NaN   85.51      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25       NaN   5408.34     NaN  1588.68         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN    158.68       NaN   41.59      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25       NaN   4102.54     NaN  1048.27         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN    169.52       NaN   42.28      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25       NaN   4027.58     NaN  1023.94         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN    152.68       NaN   39.64      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25       NaN   3360.85     NaN   823.72         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN    116.19       NaN   26.26      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25       NaN   2472.14     NaN   568.91         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN     81.58       NaN   19.25      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25       NaN   1656.88     NaN   417.17         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN     50.97       NaN   14.12      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25       NaN    784.26     NaN   255.27         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN     11.78       NaN     6.3      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25       NaN    147.19     NaN    78.78         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25       NaN         0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25       NaN         0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25       NaN         0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25       NaN         0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25       NaN         0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25       NaN         0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25       NaN         0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN         0       NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 7级砂
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2         3        4       5        6           7        8       9        10          11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  7级砂设计工程量      NaN     NaN      NaN  7级砂上期剩余工程量      NaN     NaN      NaN  7级砂本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN        开挖      NaN      超挖      NaN          开挖      NaN      超挖      NaN          开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN    ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)      ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)      ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25       NaN  1483.71     NaN   888.85         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN     118.7      NaN   71.11      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25       NaN  3740.06     NaN  2017.76         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN    180.51      NaN   90.31      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25       NaN  4632.85     NaN  2096.53         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN    190.12      NaN   77.41      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25       NaN  4687.21     NaN   1846.9         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN    184.86      NaN   70.34      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25       NaN  4949.72     NaN  1450.73         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN    211.12      NaN   45.72      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25       NaN  5505.77     NaN  1097.45         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN    229.34      NaN   42.08      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25       NaN  6535.93     NaN  1146.89         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN    293.53      NaN   49.67      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25       NaN  8240.96     NaN  1356.71         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN    365.74      NaN   58.87      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25       NaN  6255.48     NaN  1019.53         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN     134.7      NaN    22.7      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25       NaN   2672.3     NaN   433.99         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN     79.09      NaN   12.02      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25       NaN    988.6     NaN   150.29         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 8级砂
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2         3        4       5        6           7        8       9        10          11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN       NaN      NaN     NaN      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  8级砂设计工程量      NaN     NaN      NaN  8级砂上期剩余工程量      NaN     NaN      NaN  8级砂本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN        开挖      NaN      超挖      NaN          开挖      NaN      超挖      NaN          开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN    ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)      ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)      ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25       NaN        0     NaN        0         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN         0      NaN       0      NaN         NaN      NaN     NaN      NaN         NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 6级碎石
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  6级碎石设计工程量      NaN     NaN      NaN  6级碎石上期剩余工程量      NaN     NaN      NaN  6级碎石本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 9级碎石 
+------------------------------------------------------------
+数据形状: 508行 x 16列
+
+前50行数据:
+                                                                                 0        1      2          3        4       5        6            7        8       9        10           11      12      13      14           15
+0                                               北海港铁山港20万吨级航道工程（啄罗作业区至石头埠作业区段）施工1标段      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+1                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+2                                                                          疏浚工程量计算表      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+3                                                                               NaN      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+4                    业主单位：北海市路港建设投资开发有限公司                       监理单位：广州华申建设工程管理有限公司      NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+5   施工单位：中交广州航道局有限公司                                           测量日期：2026年2月25日           NaN    NaN        NaN      NaN     NaN      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+6                                                                                序号       桩号  间距(m)  9级碎石设计工程量      NaN     NaN      NaN  9级碎石上期剩余工程量      NaN     NaN      NaN  9级碎石本期剩余工程量     NaN     NaN     NaN  本期完成工程量(m³)
+7                                                                               NaN      NaN    NaN         开挖      NaN      超挖      NaN           开挖      NaN      超挖      NaN           开挖     NaN      超挖     NaN          NaN
+8                                                                               NaN      NaN    NaN     ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  工程量(m³)  ⾯积(m²)  工程量(m³)       ⾯积(m²)  体积(m³)  ⾯积(m²)  体积(m³)          NaN
+9                                                                                 1  K67+400    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+10                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+11                                                                                2  K67+425    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+12                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+13                                                                                3  K67+450    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+14                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+15                                                                                4  K67+475    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+16                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+17                                                                                5  K67+500    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+18                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+19                                                                                6  K67+525    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+20                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+21                                                                                7  K67+550    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+22                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+23                                                                                8  K67+575    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+24                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+25                                                                                9  K67+600    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+26                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+27                                                                               10  K67+625    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+28                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+29                                                                               11  K67+650    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+30                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+31                                                                               12  K67+675    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+32                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+33                                                                               13  K67+700    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+34                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+35                                                                               14  K67+725    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+36                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+37                                                                               15  K67+750    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+38                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+39                                                                               16  K67+775    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+40                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+41                                                                               17  K67+800    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+42                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+43                                                                               18  K67+825    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+44                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+45                                                                               19  K67+850    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+46                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+47                                                                               20  K67+875    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+48                                                                              NaN      NaN     25        NaN        0     NaN        0          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN            0
+49                                                                               21  K67+900    NaN          0      NaN       0      NaN          NaN      NaN     NaN      NaN          NaN     NaN     NaN     NaN          NaN
+
+列信息:
+  列0: 非空值=259, 类型=object
+  列1: 非空值=247, 类型=str
+  列2: 非空值=245, 类型=object
+  列3: 非空值=248, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=247, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=3, 类型=str
+  列8: 非空值=2, 类型=object
+  列9: 非空值=2, 类型=str
+  列10: 非空值=2, 类型=object
+  列11: 非空值=3, 类型=str
+  列12: 非空值=2, 类型=object
+  列13: 非空值=2, 类型=str
+  列14: 非空值=2, 类型=object
+  列15: 非空值=246, 类型=object
+
+================================================================================
+文件: 源文件 - 内湾段分层图（全航道）_分类汇总
+路径: D:\断面算量平台\测试文件\内湾段分层图（全航道）_分类汇总_20260316_154717.xlsx
+================================================================================
+
+工作表列表: ['设计量汇总', '超挖汇总', '明细表']
+
+------------------------------------------------------------
+工作表: 设计量汇总
+------------------------------------------------------------
+数据形状: 246行 x 14列
+
+前50行数据:
+         0       1       2        3        4        5         6     7     8     9     10    11   12    13
+0        桩号    3级黏土    4级黏土      6级砂     1级淤泥      7级砂      5级黏土  2级淤泥  3级淤泥  9级碎石  1级填土  4级填土  8级砂  6级碎石
+1   K67+400  90.002   6.572  524.181        0        0         0     0     0     0     0     0    0     0
+2   K67+425  95.587  19.245   615.07        0        0         0     0     0     0     0     0    0     0
+3   K67+450  41.444  27.878   683.33        0        0         0     0     0     0     0     0    0     0
+4   K67+475  11.028  22.722  696.892        0        0         0     0     0     0     0     0    0     0
+5   K67+500       0  40.145  656.153        0        0         0     0     0     0     0     0    0     0
+6   K67+525       0   1.482  456.648   40.855  197.828         0     0     0     0     0     0    0     0
+7   K67+550       0  40.099  264.463  105.285  300.847         0     0     0     0     0     0    0     0
+8   K67+575       0  60.103  282.541  105.608  316.867         0     0     0     0     0     0    0     0
+9   K67+600       0       0  254.469  221.128  308.095         0     0     0     0     0     0    0     0
+10  K67+625       0       0  193.644  203.921  351.867    17.652     0     0     0     0     0    0     0
+11  K67+650       0       0  135.974  194.272  382.235    66.154     0     0     0     0     0    0     0
+12  K67+675       0       0   84.942  162.829  489.222    85.764     0     0     0     0     0    0     0
+13  K67+700       0       0   19.625  103.165  609.571   143.518     0     0     0     0     0    0     0
+14  K67+725       0       0        0  124.979  224.492   554.064     0     0     0     0     0    0     0
+15  K67+750       0       0        0   85.521  131.814   654.624     0     0     0     0     0    0     0
+16  K67+775       0       0        0   99.715        0   748.676     0     0     0     0     0    0     0
+17  K67+800       0       0        0  106.963        0   732.872     0     0     0     0     0    0     0
+18  K67+825       0       0        0  153.602        0   676.791     0     0     0     0     0    0     0
+19  K67+850       0       0        0  242.733        0   582.849     0     0     0     0     0    0     0
+20  K67+875       0       0        0  142.555        0   669.258     0     0     0     0     0    0     0
+21  K67+900       0       0        0  126.591        0   694.249     0     0     0     0     0    0     0
+22  K67+925       0       0        0  108.419        0   710.902     0     0     0     0     0    0     0
+23  K67+950       0       0        0  100.216        0    686.15     0     0     0     0     0    0     0
+24  K67+975       0       0        0   81.862        0   744.397     0     0     0     0     0    0     0
+25  K68+000       0       0   77.523   45.596        0   749.123     0     0     0     0     0    0     0
+26  K68+025       0       0  100.895   84.911        0   749.112     0     0     0     0     0    0     0
+27  K68+050       0       0  150.656   79.769        0   752.995     0     0     0     0     0    0     0
+28  K68+075       0       0  126.835  102.091        0   764.129     0     0     0     0     0    0     0
+29  K68+100       0       0  123.767  132.811        0   761.569     0     0     0     0     0    0     0
+30  K68+125       0       0  116.292   80.686        0   851.889     0     0     0     0     0    0     0
+31  K68+150       0       0   98.019   76.158        0   889.564     0     0     0     0     0    0     0
+32  K68+175       0       0   70.861   50.659        0   965.106     0     0     0     0     0    0     0
+33  K68+200       0       0   97.959   54.939        0   924.845     0     0     0     0     0    0     0
+34  K68+225       0       0   38.743  128.731        0   841.447     0     0     0     0     0    0     0
+35  K68+250       0       0   44.704  137.293        0   832.134     0     0     0     0     0    0     0
+36  K68+275       0       0   24.442  131.042        0   833.427     0     0     0     0     0    0     0
+37  K68+300       0       0   24.057   75.021        0   950.847     0     0     0     0     0    0     0
+38  K68+325       0       0   37.069   51.475        0  1029.411     0     0     0     0     0    0     0
+39  K68+350       0       0    49.46   51.889        0   1064.58     0     0     0     0     0    0     0
+40  K68+375       0       0   13.115   17.065        0  1176.878     0     0     0     0     0    0     0
+41  K68+400       0       0        0        0        0  1263.416     0     0     0     0     0    0     0
+42  K68+425       0       0        0        0        0  1254.929     0     0     0     0     0    0     0
+43  K68+450       0       0        0        0        0  1297.713     0     0     0     0     0    0     0
+44  K68+475       0       0        0        0        0  1291.541     0     0     0     0     0    0     0
+45  K68+500       0       0    49.67        0        0  1297.462     0     0     0     0     0    0     0
+46  K68+525       0       0   99.991        0        0  1218.315     0     0     0     0     0    0     0
+47  K68+550       0       0  190.137        0        0  1149.731     0     0     0     0     0    0     0
+48  K68+575       0       0  308.628        0        0  1042.001     0     0     0     0     0    0     0
+49  K68+600       0       0  401.002        0        0   969.435     0     0     0     0     0    0     0
+
+列信息:
+  列0: 非空值=246, 类型=str
+  列1: 非空值=246, 类型=object
+  列2: 非空值=246, 类型=object
+  列3: 非空值=246, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=246, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=246, 类型=object
+  列8: 非空值=246, 类型=object
+  列9: 非空值=246, 类型=object
+  列10: 非空值=246, 类型=object
+  列11: 非空值=246, 类型=object
+  列12: 非空值=246, 类型=object
+  列13: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 超挖汇总
+------------------------------------------------------------
+数据形状: 246行 x 14列
+
+前50行数据:
+         0       1       2        3       4        5        6     7     8     9     10    11   12    13
+0        桩号    3级黏土    4级黏土      6级砂    1级淤泥      7级砂     5级黏土  2级淤泥  3级淤泥  9级碎石  1级填土  4级填土  8级砂  6级碎石
+1   K67+400  31.671  47.857  213.311       0        0        0     0     0     0     0     0    0     0
+2   K67+425  20.656  68.853  205.123       0        0        0     0     0     0     0     0    0     0
+3   K67+450    6.35  67.875  223.654       0        0        0     0     0     0     0     0    0     0
+4   K67+475   2.747  28.603    267.5       0        0        0     0     0     0     0     0    0     0
+5   K67+500       0    22.2  275.288       0        0        0     0     0     0     0     0    0     0
+6   K67+525       0  23.247  142.515  12.165  118.513        0     0     0     0     0     0    0     0
+7   K67+550       0  54.732   69.309  17.157  150.521        0     0     0     0     0     0    0     0
+8   K67+575       0  75.942    70.46  19.029  129.016        0     0     0     0     0     0    0     0
+9   K67+600       0       0   66.065  66.503  117.238   38.047     0     0     0     0     0    0     0
+10  K67+625       0       0   43.764  69.437   76.193  107.254     0     0     0     0     0    0     0
+11  K67+650       0       0   32.091  67.298   70.134  124.717     0     0     0     0     0    0     0
+12  K67+675       0       0   23.532  62.479   82.784  126.486     0     0     0     0     0    0     0
+13  K67+700       0       0   10.504  46.745    98.11   138.53     0     0     0     0     0    0     0
+14  K67+725       0       0        0  53.222   37.827  203.437     0     0     0     0     0    0     0
+15  K67+750       0       0        0  22.819   20.039  245.777     0     0     0     0     0    0     0
+16  K67+775       0       0        0  21.239        0  260.461     0     0     0     0     0    0     0
+17  K67+800       0       0        0  24.759        0  258.771     0     0     0     0     0    0     0
+18  K67+825       0       0        0   24.28        0  258.875     0     0     0     0     0    0     0
+19  K67+850       0       0        0  30.493        0  255.734     0     0     0     0     0    0     0
+20  K67+875       0       0        0  28.161        0  259.571     0     0     0     0     0    0     0
+21  K67+900       0       0        0  29.751        0  260.194     0     0     0     0     0    0     0
+22  K67+925       0       0        0  31.113        0   261.92     0     0     0     0     0    0     0
+23  K67+950       0       0        0  22.541        0  264.817     0     0     0     0     0    0     0
+24  K67+975       0       0        0  21.088        0  262.412     0     0     0     0     0    0     0
+25  K68+000       0       0    5.177  16.557        0  260.505     0     0     0     0     0    0     0
+26  K68+025       0       0    5.839  19.368        0  259.736     0     0     0     0     0    0     0
+27  K68+050       0       0    7.349  19.583        0  260.937     0     0     0     0     0    0     0
+28  K68+075       0       0    7.304  20.297        0  258.107     0     0     0     0     0    0     0
+29  K68+100       0       0    7.643  21.012        0  259.209     0     0     0     0     0    0     0
+30  K68+125       0       0    7.501  18.735        0   262.52     0     0     0     0     0    0     0
+31  K68+150       0       0    5.647  19.522        0  260.609     0     0     0     0     0    0     0
+32  K68+175       0       0    6.731  16.646        0  261.719     0     0     0     0     0    0     0
+33  K68+200       0       0    6.061  17.153        0  261.252     0     0     0     0     0    0     0
+34  K68+225       0       0    4.836  17.539        0  262.358     0     0     0     0     0    0     0
+35  K68+250       0       0    4.027  17.896        0  265.153     0     0     0     0     0    0     0
+36  K68+275       0       0    3.103  18.539        0  264.716     0     0     0     0     0    0     0
+37  K68+300       0       0     4.38  11.044        0  267.032     0     0     0     0     0    0     0
+38  K68+325       0       0    6.208   4.333        0  271.896     0     0     0     0     0    0     0
+39  K68+350       0       0    7.144       0        0  274.715     0     0     0     0     0    0     0
+40  K68+375       0       0    3.327       0        0  276.237     0     0     0     0     0    0     0
+41  K68+400       0       0        0       0        0  286.707     0     0     0     0     0    0     0
+42  K68+425       0       0        0       0        0  278.029     0     0     0     0     0    0     0
+43  K68+450       0       0        0       0        0  286.264     0     0     0     0     0    0     0
+44  K68+475       0       0        0       0        0  284.678     0     0     0     0     0    0     0
+45  K68+500       0       0        0       0        0  280.656     0     0     0     0     0    0     0
+46  K68+525       0       0   45.963       0        0  233.528     0     0     0     0     0    0     0
+47  K68+550       0       0   69.735       0        0  210.647     0     0     0     0     0    0     0
+48  K68+575       0       0   90.515       0        0  190.054     0     0     0     0     0    0     0
+49  K68+600       0       0   91.817       0        0  189.025     0     0     0     0     0    0     0
+
+列信息:
+  列0: 非空值=246, 类型=str
+  列1: 非空值=246, 类型=object
+  列2: 非空值=246, 类型=object
+  列3: 非空值=246, 类型=object
+  列4: 非空值=246, 类型=object
+  列5: 非空值=246, 类型=object
+  列6: 非空值=246, 类型=object
+  列7: 非空值=246, 类型=object
+  列8: 非空值=246, 类型=object
+  列9: 非空值=246, 类型=object
+  列10: 非空值=246, 类型=object
+  列11: 非空值=246, 类型=object
+  列12: 非空值=246, 类型=object
+  列13: 非空值=246, 类型=object
+
+------------------------------------------------------------
+工作表: 明细表
+------------------------------------------------------------
+数据形状: 1262行 x 5列
+
+前50行数据:
+      0        1     2        3        4
+0    断面       桩号    地层     设计面积     超挖面积
+1    S1  K67+400  3级黏土   90.002   31.671
+2    S1  K67+400  4级黏土    6.572   47.857
+3    S1  K67+400   6级砂  524.181  213.311
+4    S2  K67+425  3级黏土   95.587   20.656
+5    S2  K67+425  4级黏土   19.245   68.853
+6    S2  K67+425   6级砂   615.07  205.123
+7   S41  K67+450  3级黏土   41.444     6.35
+8   S41  K67+450   6级砂   683.33  223.654
+9   S41  K67+450  4级黏土   27.878   67.875
+10  S42  K67+475  3级黏土   11.028    2.747
+11  S42  K67+475  4级黏土   22.722   28.603
+12  S42  K67+475   6级砂  696.892    267.5
+13   S3  K67+500  4级黏土   40.145     22.2
+14   S3  K67+500   6级砂  656.153  275.288
+15   S4  K67+525  1级淤泥   40.855   12.165
+16   S4  K67+525  4级黏土    1.482   23.247
+17   S4  K67+525   7级砂  197.828  118.513
+18   S4  K67+525   6级砂  456.648  142.515
+19  S43  K67+550  1级淤泥  105.285   17.157
+20  S43  K67+550   6级砂  264.463   69.309
+21  S43  K67+550   7级砂  300.847  150.521
+22  S43  K67+550  4级黏土   40.099   54.732
+23  S44  K67+575  1级淤泥  105.608   19.029
+24  S44  K67+575   6级砂  282.541    70.46
+25  S44  K67+575   7级砂  316.867  129.016
+26  S44  K67+575  4级黏土   60.103   75.942
+27   S5  K67+600  1级淤泥  221.128   66.503
+28   S5  K67+600   6级砂  254.469   66.065
+29   S5  K67+600   7级砂  308.095  117.238
+30   S5  K67+600  5级黏土        0   38.047
+31   S6  K67+625  1级淤泥  203.921   69.437
+32   S6  K67+625   6级砂  193.644   43.764
+33   S6  K67+625   7级砂  351.867   76.193
+34   S6  K67+625  5级黏土   17.652  107.254
+35  S45  K67+650  5级黏土   66.154  124.717
+36  S45  K67+650  1级淤泥  194.272   67.298
+37  S45  K67+650   7级砂  382.235   70.134
+38  S45  K67+650   6级砂  135.974   32.091
+39  S46  K67+675  5级黏土   85.764  126.486
+40  S46  K67+675  1级淤泥  162.829   62.479
+41  S46  K67+675   7级砂  489.222   82.784
+42  S46  K67+675   6级砂   84.942   23.532
+43   S7  K67+700  1级淤泥  103.165   46.745
+44   S7  K67+700   6级砂   19.625   10.504
+45   S7  K67+700   7级砂  609.571    98.11
+46   S7  K67+700  5级黏土  143.518   138.53
+47   S8  K67+725  1级淤泥  124.979   53.222
+48   S8  K67+725   7级砂  224.492   37.827
+49   S8  K67+725  5级黏土  554.064  203.437
+
+列信息:
+  列0: 非空值=1262, 类型=str
+  列1: 非空值=1262, 类型=str
+  列2: 非空值=1262, 类型=str
+  列3: 非空值=1262, 类型=object
+  列4: 非空值=1262, 类型=object
+
+================================================================================
+分析完成!
+================================================================================

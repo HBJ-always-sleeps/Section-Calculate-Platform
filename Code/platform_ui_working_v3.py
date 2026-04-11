@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-航道断面算量自动化平台 v3.5 - 前端UI
+航道断面算量自动化平台 v3.6.0 - 前端UI
 基于 React 设计转写，现代化深色主题
 前后端分离架构：前端 PyQt6 + 后端 FastAPI
 
-v3.5 更新：
+v3.6.0 更新：
 - 断面合并：新增上/下包络线选择
 - 分类算量 -> 分层算量（autosection）：新增包络线类型、区分设计超挖选项
 - 新增回淤计算模块
@@ -28,10 +28,17 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt, pyqtSignal, QThread, QTimer, QSize, QPropertyAnimation, QEasingCurve, QPoint
 from PyQt6.QtGui import QFont, QColor, QPalette, QPixmap, QPainter, QPen, QBrush, QLinearGradient, QIcon
 
-# 尝试导入引擎模块（程序化调用，无需HTTP）
+# 尝试导入引擎模块（程序化调用，使用绝对路径）
 try:
+    # 使用绝对路径导入Code目录下的engine_cad.py
+    import sys
+    from pathlib import Path
+    code_dir = Path(__file__).parent  # Code目录
+    if str(code_dir) not in sys.path:
+        sys.path.insert(0, str(code_dir))
     import engine_cad
     ENGINE_AVAILABLE = True
+    print(f"[INFO] 引擎模块已加载: {engine_cad.__file__}")
 except ImportError as e:
     ENGINE_AVAILABLE = False
     print(f"[WARN] 引擎模块加载失败: {e}")
@@ -359,7 +366,7 @@ class SplashScreen(QWidget):
         layout.addWidget(title)
         
         # 副标题
-        subtitle = QLabel("WATERWAY SECTION AUTOMATION PLATFORM v3.5")
+        subtitle = QLabel("WATERWAY SECTION AUTOMATION PLATFORM v3.6.0")
         subtitle.setStyleSheet("font-size: 10px; opacity: 0.3; letter-spacing: 0.3em; font-family: 'Consolas';")
         subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(subtitle)
@@ -680,7 +687,7 @@ class HydraulicCADPlatform(QMainWindow):
     
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("航道断面算量自动化平台 v3.5")
+        self.setWindowTitle("航道断面算量自动化平台 v3.6.0")
         self.setMinimumSize(1280, 800)
         self.resize(1280, 800)
         
@@ -993,25 +1000,19 @@ class HydraulicCADPlatform(QMainWindow):
         param_grid.addWidget(self.param_output_dir, 2, 1)
     
     def _create_autopaste_params(self, param_grid):
-        """批量粘贴参数"""
-        self.param_src_x0 = ParamInputWidget("源端 0 点 X", "86.8540")
-        self.param_src_y0 = ParamInputWidget("源端 0 点 Y", "-15.0622")
-        self.param_src_bx = ParamInputWidget("源端基点 X", "86.0030")
-        self.param_src_by = ParamInputWidget("源端基点 Y", "-35.2980")
-        self.param_spacing = ParamInputWidget("断面间距", "-148.4760")
-        self.param_dst_y = ParamInputWidget("目标桩号 Y", "-1470.5289")
-        self.param_dst_by = ParamInputWidget("目标基点 Y", "-1363.5000")
+        """批量粘贴参数 - v2简化版，全自动匹配，只需输出图层名"""
+        # 提示信息
+        hint_label = QLabel("✨ v2全自动匹配：自动检测源文件小矩形基点+桩号，目标文件L1脊梁线基点+桩号")
+        hint_label.setStyleSheet("font-size: 12px; color: #50FA7B; padding: 8px; background-color: rgba(80, 250, 123, 0.1); border-radius: 4px;")
+        param_grid.addWidget(hint_label, 0, 0, 1, 2)
+        
+        # 使用独立的变量名，避免与其他模块冲突
+        self.param_paste_layer = ParamInputWidget("输出图层名", "0-已粘贴断面")
         self.param_paste_output_dir = ParamInputWidget("输出目录（留空则同目录）", "", is_path=True)
         
         param_grid.setSpacing(16)
-        param_grid.addWidget(self.param_src_x0, 0, 0)
-        param_grid.addWidget(self.param_src_y0, 0, 1)
-        param_grid.addWidget(self.param_src_bx, 1, 0)
-        param_grid.addWidget(self.param_src_by, 1, 1)
-        param_grid.addWidget(self.param_spacing, 2, 0, 1, 2)
-        param_grid.addWidget(self.param_dst_y, 3, 0)
-        param_grid.addWidget(self.param_dst_by, 3, 1)
-        param_grid.addWidget(self.param_paste_output_dir, 4, 0, 1, 2)
+        param_grid.addWidget(self.param_paste_layer, 1, 0)
+        param_grid.addWidget(self.param_paste_output_dir, 1, 1)
     
     def _create_autohatch_params(self, param_grid):
         """快速填充参数"""
@@ -1146,7 +1147,7 @@ class HydraulicCADPlatform(QMainWindow):
             }
         """)
         
-        self.status_bar.showMessage("引擎版本: v3.5 | 核心算法: DXF-SHAPELY")
+        self.status_bar.showMessage("引擎版本: v3.6.0 | 核心算法: DXF-SHAPELY")
         
         copyright_label = QLabel("@黄秉俊")
         copyright_label.setStyleSheet("""
@@ -1239,13 +1240,7 @@ class HydraulicCADPlatform(QMainWindow):
             params = {
                 '源文件名': self.source_file.get('path') if self.source_file else '',
                 '目标文件名': self.target_file.get('path') if self.target_file else '',
-                '源端0点X': self.param_src_x0.get_value(),
-                '源端0点Y': self.param_src_y0.get_value(),
-                '源端基点X': self.param_src_bx.get_value(),
-                '源端基点Y': self.param_src_by.get_value(),
-                '断面间距': self.param_spacing.get_value(),
-                '目标桩号Y': self.param_dst_y.get_value(),
-                '目标基点Y': self.param_dst_by.get_value(),
+                '输出图层名': self.param_paste_layer.get_value(),
                 '输出目录': self.param_paste_output_dir.get_value()
             }
         elif self.current_task == "autohatch":
