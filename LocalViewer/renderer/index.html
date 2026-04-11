@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:;">
+    <title>航道三维地质展示平台</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部工具栏 -->
+    <div id="toolbar">
+        <div class="toolbar-left">
+            <button id="btn-open-obj" title="打开OBJ模型 (Ctrl+O)">
+                <span class="icon">📁</span>
+                <span class="label">OBJ</span>
+            </button>
+            <button id="btn-open-dxf" title="打开DXF图纸 (Ctrl+Shift+O)">
+                <span class="icon">📐</span>
+                <span class="label">DXF</span>
+            </button>
+            <div class="separator"></div>
+            <button id="btn-reset-view" title="重置视角 (R)">
+                <span class="icon">🔄</span>
+            </button>
+            <button id="btn-view-top" title="俯视图 (1)">
+                <span class="icon">⬇️</span>
+            </button>
+            <button id="btn-view-front" title="前视图 (2)">
+                <span class="icon">⬆️</span>
+            </button>
+            <button id="btn-view-side" title="侧视图 (3)">
+                <span class="icon">➡️</span>
+            </button>
+            <div class="separator"></div>
+            <button id="btn-measure" title="测量距离 (M)">
+                <span class="icon">📏</span>
+            </button>
+            <button id="btn-clipping" title="剖面切割 (C)">
+                <span class="icon">✂️</span>
+            </button>
+        </div>
+        <div class="toolbar-right">
+            <button id="btn-screenshot" title="导出截图 (Ctrl+S)">
+                <span class="icon">📷</span>
+            </button>
+            <button id="btn-fullscreen" title="全屏 (F11)">
+                <span class="icon">⛶</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <div id="main-container">
+        <!-- 左侧边栏 - 图层管理 -->
+        <div id="sidebar">
+            <div class="sidebar-header">
+                <span>图层管理器</span>
+                <button id="btn-collapse-sidebar" title="收起侧边栏">◀</button>
+            </div>
+            <!-- 折叠时显示的展开按钮 -->
+            <div id="sidebar-expand-btn" style="display: none; position: absolute; left: 0; top: 0; width: 30px; height: 100%; background: #2d2d2d; cursor: pointer; display: none; align-items: center; justify-content: center; border-right: 1px solid #3a3a3a;" title="展开侧边栏">
+                <span style="color: #e0e0e0;">▶</span>
+            </div>
+            
+            <!-- 模型信息 -->
+            <div class="sidebar-section">
+                <div class="section-header">模型信息</div>
+                <div id="model-info" class="section-content">
+                    <p class="placeholder">等待模型加载...</p>
+                </div>
+            </div>
+            
+            <!-- 图层列表 -->
+            <div class="sidebar-section">
+                <div class="section-header">
+                    <span>图层列表</span>
+                    <button id="btn-toggle-all-layers" title="全部显示/隐藏">👁️</button>
+                </div>
+                <div id="layer-list" class="section-content">
+                    <p class="placeholder">加载模型后显示图层</p>
+                </div>
+            </div>
+            
+            <!-- 材质设置 -->
+            <div class="sidebar-section">
+                <div class="section-header">材质设置</div>
+                <div id="material-settings" class="section-content">
+                    <div class="setting-row">
+                        <label>透明度:</label>
+                        <input type="range" id="opacity-slider" min="0" max="100" value="100">
+                        <span id="opacity-value">100%</span>
+                    </div>
+                    <div class="setting-row">
+                        <label>线框模式:</label>
+                        <input type="checkbox" id="wireframe-toggle">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 剖面切割控制 -->
+            <div class="sidebar-section" id="clipping-section" style="display: none;">
+                <div class="section-header">剖面切割</div>
+                <div class="section-content">
+                    <div class="setting-row">
+                        <label>X轴切割:</label>
+                        <input type="range" id="clip-x" min="-100" max="100" value="0">
+                    </div>
+                    <div class="setting-row">
+                        <label>Y轴切割:</label>
+                        <input type="range" id="clip-y" min="-100" max="100" value="0">
+                    </div>
+                    <div class="setting-row">
+                        <label>Z轴切割:</label>
+                        <input type="range" id="clip-z" min="-100" max="100" value="0">
+                    </div>
+                    <button id="btn-reset-clipping">重置切割</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3D视图容器 -->
+        <div id="viewer-container">
+            <!-- 拖放提示 -->
+            <div id="drop-zone">
+                <div class="drop-content">
+                    <div class="drop-icon">📂</div>
+                    <p>拖放 OBJ 或 DXF 文件到此处</p>
+                    <p class="drop-hint">或使用菜单 文件 → 打开</p>
+                </div>
+            </div>
+            
+            <!-- Three.js 渲染目标 -->
+            <canvas id="viewer-canvas"></canvas>
+            
+            <!-- 坐标轴指示器 -->
+            <div id="axis-helper">
+                <canvas id="axis-canvas" width="80" height="80"></canvas>
+            </div>
+            
+            <!-- 状态栏 -->
+            <div id="status-bar">
+                <div class="status-left">
+                    <span id="status-message">就绪</span>
+                </div>
+                <div class="status-right">
+                    <span id="status-coords">X: 0 Y: 0 Z: 0</span>
+                    <span id="status-fps">FPS: --</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 测量工具提示 -->
+    <div id="measure-tooltip" class="tooltip" style="display: none;">
+        <span id="measure-distance">0.00 m</span>
+    </div>
+
+    <!-- 加载进度 -->
+    <div id="loading-overlay" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p id="loading-message">加载中...</p>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="../libs/three.min.js"></script>
+    <script src="../libs/OrbitControls.umd.js"></script>
+    <script src="../engine/viewer.js"></script>
+    <script src="../engine/obj-loader.js"></script>
+    <script src="../engine/dxf-loader.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html>

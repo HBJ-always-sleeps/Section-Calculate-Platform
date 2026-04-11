@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>测试页面</title>
+    <style>
+        body { margin: 0; padding: 20px; font-family: sans-serif; background: #1a1a1a; color: white; }
+        h1 { color: #50FA7B; }
+        button { padding: 10px 20px; margin: 10px; cursor: pointer; }
+        #status { margin-top: 20px; padding: 10px; background: #333; }
+    </style>
+</head>
+<body>
+    <h1>航道三维地质展示平台 - 测试页面</h1>
+    <button id="btn-test">测试按钮</button>
+    <div id="status">状态: 就绪</div>
+    
+    <script>
+        const { ipcRenderer } = require('electron');
+        
+        console.log('测试页面加载成功');
+        console.log('electron:', process.versions);
+        
+        // 测试按钮点击
+        document.getElementById('btn-test').addEventListener('click', () => {
+            console.log('按钮被点击');
+            document.getElementById('status').textContent = '按钮被点击！';
+            
+            // 发送消息到 ipcRenderer.send('test-action', 'hello');
+        });
+        
+        // 监听主进程回复
+        ipcRenderer.on('test-reply', (event, data) => {
+            console.log('收到主进程回复:', data);
+            document.getElementById('status').textContent = '收到回复: ' + data;
+        });
+    </script>
+</body>
+</html>

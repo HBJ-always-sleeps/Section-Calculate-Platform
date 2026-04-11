@@ -1,0 +1,61 @@
+{
+  "name": "channel-3d-viewer",
+  "version": "1.0.0",
+  "description": "航道三维地质模型桌面展示终端 - 支持OBJ和DXF格式",
+  "main": "main.js",
+  "scripts": {
+    "start": "node_modules\\electron\\dist\\electron.exe .",
+    "build": "electron-builder --win",
+    "build:dir": "electron-builder --win --dir"
+  },
+  "keywords": [
+    "3d-viewer",
+    "geology",
+    "channel",
+    "obj",
+    "dxf",
+    "electron"
+  ],
+  "author": "断面算量平台",
+  "license": "MIT",
+  "dependencies": {
+    "dxf-parser": "^1.1.2",
+    "electron": "^28.0.0",
+    "three": "^0.160.0"
+  },
+  "devDependencies": {
+    "electron-builder": "^24.9.1"
+  },
+  "build": {
+    "appId": "com.channel.geology.viewer",
+    "productName": "航道三维地质展示平台",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "engine/**/*",
+      "libs/**/*",
+      "assets/**/*"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icons/icon.ico",
+      "uninstallerIcon": "assets/icons/icon.ico"
+    }
+  }
+}

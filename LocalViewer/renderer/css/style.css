@@ -1,0 +1,523 @@
+/**
+ * 航道三维地质展示平台 - 样式表
+ * 
+ * 设计原则：
+ * 1. 深色主题，适合长时间查看3D模型
+ * 2. 高对比度，便于识别UI元素
+ * 3. 响应式布局，适应不同窗口大小
+ */
+
+/* 全局重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+    font-size: 13px;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    overflow: hidden;
+    user-select: none;
+}
+
+/* 顶部工具栏 */
+#toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom, #2d2d2d, #252525);
+    border-bottom: 1px solid #3a3a3a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    z-index: 100;
+}
+
+.toolbar-left, .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#toolbar button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px 10px;
+    background: #3a3a3a;
+    border: 1px solid #4a4a4a;
+    border-radius: 4px;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+#toolbar button:hover {
+    background: #4a4a4a;
+    border-color: #5a5a5a;
+}
+
+#toolbar button:active {
+    background: #2a2a2a;
+}
+
+#toolbar button .icon {
+    font-size: 14px;
+}
+
+#toolbar button .label {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+#toolbar .separator {
+    width: 1px;
+    height: 24px;
+    background: #4a4a4a;
+    margin: 0 5px;
+}
+
+/* 主内容区域 */
+#main-container {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+/* 左侧边栏 */
+#sidebar {
+    width: 260px;
+    min-width: 200px;
+    max-width: 400px;
+    background: #252525;
+    border-right: 1px solid #3a3a3a;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: width 0.3s;
+}
+
+#sidebar.collapsed {
+    width: 0;
+    min-width: 0;
+}
+
+/* 图层项样式 */
+.layer-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: #2a2a2a;
+    border-radius: 4px;
+    margin-bottom: 4px;
+}
+
+.layer-checkbox {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.layer-name {
+    flex: 1;
+    font-size: 12px;
+    color: #e0e0e0;
+}
+
+.layer-color {
+    width: 24px;
+    height: 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: transparent;
+}
+
+.sidebar-header {
+    padding: 12px 15px;
+    background: #2d2d2d;
+    border-bottom: 1px solid #3a3a3a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+}
+
+.sidebar-header button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s;
+}
+
+.sidebar-header button:hover {
+    color: #fff;
+}
+
+.sidebar-section {
+    border-bottom: 1px solid #3a3a3a;
+}
+
+.section-header {
+    padding: 10px 15px;
+    background: #2a2a2a;
+    font-size: 12px;
+    font-weight: 600;
+    color: #aaa;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.section-header button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 2px;
+}
+
+.section-header button:hover {
+    color: #fff;
+}
+
+.section-content {
+    padding: 10px 15px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.section-content .placeholder {
+    color: #666;
+    font-style: italic;
+    font-size: 12px;
+}
+
+/* 设置行 */
+.setting-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+.setting-row label {
+    min-width: 70px;
+    font-size: 12px;
+    color: #aaa;
+}
+
+.setting-row input[type="range"] {
+    flex: 1;
+    height: 4px;
+    -webkit-appearance: none;
+    background: #3a3a3a;
+    border-radius: 2px;
+}
+
+.setting-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #5a9cf8;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.setting-row input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+/* 图层列表 */
+#layer-list {
+    padding: 0;
+}
+
+.layer-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-bottom: 1px solid #333;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.layer-item:hover {
+    background: #2a2a2a;
+}
+
+.layer-item.selected {
+    background: #1a4a7a;
+}
+
+.layer-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    margin-right: 10px;
+    border: 1px solid #555;
+}
+
+.layer-name {
+    flex: 1;
+    font-size: 12px;
+}
+
+.layer-toggle {
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.layer-toggle:hover {
+    color: #fff;
+}
+
+/* 3D视图容器 */
+#viewer-container {
+    flex: 1;
+    position: relative;
+    background: #1a1a1a;
+    overflow: hidden;
+}
+
+#viewer-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 拖放区域 */
+#drop-zone {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#drop-zone.hidden {
+    display: none;
+}
+
+.drop-content {
+    text-align: center;
+    color: #555;
+}
+
+.drop-icon {
+    font-size: 64px;
+    margin-bottom: 20px;
+    opacity: 0.5;
+}
+
+.drop-content p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.drop-hint {
+    font-size: 12px !important;
+    color: #444;
+}
+
+#drop-zone.drag-over .drop-content {
+    color: #5a9cf8;
+}
+
+#drop-zone.drag-over .drop-icon {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* 坐标轴指示器 */
+#axis-helper {
+    position: absolute;
+    left: 10px;
+    bottom: 50px;
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#axis-canvas {
+    width: 80px;
+    height: 80px;
+}
+
+/* 状态栏 */
+#status-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 28px;
+    background: rgba(30, 30, 30, 0.9);
+    border-top: 1px solid #3a3a3a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 11px;
+    color: #888;
+}
+
+.status-left, .status-right {
+    display: flex;
+    gap: 20px;
+}
+
+/* 测量工具提示 */
+.tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    pointer-events: none;
+    z-index: 50;
+}
+
+/* 加载遮罩 */
+#loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #333;
+    border-top-color: #5a9cf8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#loading-message {
+    margin-bottom: 15px;
+    color: #aaa;
+}
+
+.progress-bar {
+    width: 200px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #5a9cf8;
+    width: 0%;
+    transition: width 0.3s;
+}
+
+/* 模型信息 */
+#model-info .info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0;
+    font-size: 12px;
+}
+
+#model-info .info-label {
+    color: #888;
+}
+
+#model-info .info-value {
+    color: #e0e0e0;
+    font-weight: 500;
+}
+
+/* 按钮样式 */
+button.primary {
+    background: #5a9cf8 !important;
+    border-color: #4a8ce8 !important;
+    color: #fff !important;
+}
+
+button.primary:hover {
+    background: #4a8ce8 !important;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a4a4a;
+}
+
+/* 响应式调整 */
+@media (max-width: 800px) {
+    #sidebar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        z-index: 50;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    #sidebar.collapsed {
+        left: -260px;
+    }
+}
