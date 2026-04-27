@@ -128,8 +128,8 @@ def transform_to_spine_aligned(cad_x, cad_y, ref_x, ref_y, spine_x, spine_y, rot
     """
     坐标转换：将CAD坐标转换为三维大地坐标系
     
-    参考 extract_xyz_from_dxf.py 的转换逻辑：
-    - dx = cad_x - ref_x (相对于L1交点的X偏移，断面方向距离)
+    参考 extract_xyz_from_dxf.py 的转换逻辑（2026-04-13修正）：
+    - dx = ref_x - cad_x (相对于L1交点的X偏移，取负值修正左右反转)
     - z = cad_y - ref_y (高程，相对于L1点)
     - eng_x = spine_x + dx * cos(rotation_angle)
     - eng_y = spine_y + dx * sin(rotation_angle)
@@ -137,7 +137,7 @@ def transform_to_spine_aligned(cad_x, cad_y, ref_x, ref_y, spine_x, spine_y, rot
     这样保留了真实的弯道形状
     """
     z = cad_y - ref_y
-    dx = cad_x - ref_x
+    dx = ref_x - cad_x  # 取负值修正左右反转
     cos_a = math.cos(rotation_angle)
     sin_a = math.sin(rotation_angle)
     eng_x = spine_x + dx * cos_a
@@ -376,7 +376,7 @@ class ChannelBIMGeneratorV17:
                     eng_x, eng_y, z = transform_to_spine_aligned(
                         cad_x, cad_y, ref_x, ref_y, spine['spine_x'], spine['spine_y'], rotation_angle)
                     section_3d['dmx_3d'].append((eng_x, eng_y, z))
-                    self.uvz_points['DMX'].append((station, cad_x - ref_x, z))
+                    self.uvz_points['DMX'].append((station, ref_x - cad_x, z))
             
             overbreak_points = sec.get('overbreak_points', [])
             for pt_group in overbreak_points:
@@ -387,7 +387,7 @@ class ChannelBIMGeneratorV17:
                             eng_x, eng_y, z = transform_to_spine_aligned(
                                 cad_x, cad_y, ref_x, ref_y, spine['spine_x'], spine['spine_y'], rotation_angle)
                             section_3d['overbreak_3d'].append((eng_x, eng_y, z))
-                            self.uvz_points['OVERDREDGE'].append((station, cad_x - ref_x, z))
+                            self.uvz_points['OVERDREDGE'].append((station, ref_x - cad_x, z))
             
             fill_boundaries = sec.get('fill_boundaries', {})
             for layer_name, poly_groups in fill_boundaries.items():
@@ -406,7 +406,7 @@ class ChannelBIMGeneratorV17:
                                 eng_x, eng_y, z = transform_to_spine_aligned(
                                     cad_x, cad_y, ref_x, ref_y, spine['spine_x'], spine['spine_y'], rotation_angle)
                                 poly_3d.append((eng_x, eng_y, z))
-                                self.uvz_points[cat_key].append((station, cad_x - ref_x, z))
+                                self.uvz_points[cat_key].append((station, ref_x - cad_x, z))
                         if poly_3d:
                             section_3d['geological_polys'][cat_key].append(poly_3d)
             
@@ -428,7 +428,7 @@ class ChannelBIMGeneratorV17:
         
         return u_min <= u <= u_max and v_min <= v <= v_max
     
-    def build_grid_surfaces(self, u_step=200.0, v_step=5.0):
+    def build_grid_surfaces(self, u_step=25.0, v_step=5.0):
         print("\n=== Building Grid Surfaces ===")
         
         if not self.uvz_points['DMX']:
@@ -451,8 +451,13 @@ class ChannelBIMGeneratorV17:
         print(f"  U range: {u_min:.1f} ~ {u_max:.1f} (station)")
         print(f"  V range: {v_min:.1f} ~ {v_max:.1f} (offset)")
         
+        # 确保网格包含最后一个断面（u_max）
         u_grid = np.arange(u_min, u_max + u_step, u_step)
+        if u_grid[-1] < u_max:
+            u_grid = np.append(u_grid, u_max)
         v_grid = np.arange(v_min, v_max + v_step, v_step)
+        if v_grid[-1] < v_max:
+            v_grid = np.append(v_grid, v_max)
         
         U, V = np.meshgrid(u_grid, v_grid)
         

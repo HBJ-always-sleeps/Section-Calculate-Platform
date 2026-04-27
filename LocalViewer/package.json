@@ -20,10 +20,10 @@
   "license": "MIT",
   "dependencies": {
     "dxf-parser": "^1.1.2",
-    "electron": "^28.0.0",
     "three": "^0.160.0"
   },
   "devDependencies": {
+    "electron": "^28.0.0",
     "electron-builder": "^24.9.1"
   },
   "build": {
@@ -48,14 +48,11 @@
             "x64"
           ]
         }
-      ],
-      "icon": "assets/icons/icon.ico"
+      ]
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true,
-      "installerIcon": "assets/icons/icon.ico",
-      "uninstallerIcon": "assets/icons/icon.ico"
+      "allowToChangeInstallationDirectory": true
     }
   }
 }

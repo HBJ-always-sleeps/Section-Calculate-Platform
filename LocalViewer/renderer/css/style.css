@@ -487,6 +487,23 @@ button.primary:hover {
     background: #4a8ce8 !important;
 }
 
+/* 剖面切割区域的按钮 */
+#clipping-section button {
+    width: 100%;
+    padding: 8px 15px;
+    background: #3a3a3a;
+    border: 1px solid #4a4a4a;
+    border-radius: 4px;
+    color: #e0e0e0;
+    cursor: pointer;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+#clipping-section button:hover {
+    background: #4a4a4a;
+}
+
 /* 滚动条样式 */
 ::-webkit-scrollbar {
     width: 8px;

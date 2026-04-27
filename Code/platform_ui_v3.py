@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-航道断面算量自动化平台 v3.6.0 - 前端UI
+航道断面算量自动化平台 v3.7.0 - 前端UI
 基于 React 设计转写，现代化深色主题
 前后端分离架构：前端 PyQt6 + 后端 FastAPI
 
-v3.6.0 更新：
-- 断面合并：新增上/下包络线选择
-- 分类算量 -> 分层算量（autosection）：新增包络线类型、区分设计超挖选项
-- 新增回淤计算模块
+v3.7.0 更新：
+- 新增"分层+回淤"合并功能，一次性完成分层算量和回淤计算
+- 设计断面线(DMX)作为回淤下边界，更新断面线作为上边界
+- 优化参数界面，支持合并任务的参数配置
 """
 
 import sys
@@ -30,13 +30,13 @@ from PyQt6.QtGui import QFont, QColor, QPalette, QPixmap, QPainter, QPen, QBrush
 
 # 尝试导入引擎模块（程序化调用，使用绝对路径）
 try:
-    # 使用绝对路径导入Code目录下的engine_cad.py
+    # 使用绝对路径导入Code目录下的engine_cad_v3.py
     import sys
     from pathlib import Path
     code_dir = Path(__file__).parent  # Code目录
     if str(code_dir) not in sys.path:
         sys.path.insert(0, str(code_dir))
-    import engine_cad
+    import engine_cad_v3 as engine_cad
     ENGINE_AVAILABLE = True
     print(f"[INFO] 引擎模块已加载: {engine_cad.__file__}")
 except ImportError as e:
@@ -320,6 +320,10 @@ TOOL_CONFIG = {
     'backfill': {
         'name': '回淤计算',
         'desc': '计算DMX与设计断面线之间的回淤面积'
+    },
+    'autosection_backfill': {
+        'name': '分层+回淤',
+        'desc': '分层算量与回淤计算合并，一次运行完成两项计算'
     }
 }
 
@@ -333,16 +337,22 @@ class SplashScreen(QWidget):
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, False)
         self.setFixedSize(500, 600)
         
-        # 加载独家 Logo
         self.logo_pixmap = None
-        exclusive_logo_path = Path(r"C:\Users\训教\Downloads\Gemini_Generated_Image_3db1n53db1n53db1.png")
-        if exclusive_logo_path.exists():
-            self.logo_pixmap = QPixmap(str(exclusive_logo_path))
+        icon_path = Path(__file__).parent.parent / "new_logo.ico"
+        if icon_path.exists():
+            try:
+                self.logo_pixmap = QPixmap(str(icon_path))
+            except Exception as e:
+                print(f"[WARN] Logo加载失败: {e}")
+                self.logo_pixmap = None
         else:
-            # 备用 Logo
-            logo_path = Path(__file__).parent.parent / "input_file_0.png"
+            logo_path = Path(__file__).parent.parent / "logo.ico"
             if logo_path.exists():
-                self.logo_pixmap = QPixmap(str(logo_path))
+                try:
+                    self.logo_pixmap = QPixmap(str(logo_path))
+                except Exception as e:
+                    print(f"[WARN] 备用Logo加载失败: {e}")
+                    self.logo_pixmap = None
         
         self.progress = 0
         self.init_ui()
@@ -366,7 +376,7 @@ class SplashScreen(QWidget):
         layout.addWidget(title)
         
         # 副标题
-        subtitle = QLabel("WATERWAY SECTION AUTOMATION PLATFORM v3.6.0")
+        subtitle = QLabel("WATERWAY SECTION AUTOMATION PLATFORM v3.7.0")
         subtitle.setStyleSheet("font-size: 10px; opacity: 0.3; letter-spacing: 0.3em; font-family: 'Consolas';")
         subtitle.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(subtitle)
@@ -637,6 +647,8 @@ class EngineBridge:
                 engine_cad.run_autosection(params, log_func)
             elif task_type == 'backfill':
                 engine_cad.run_backfill(params, log_func)
+            elif task_type == 'autosection_backfill':
+                engine_cad.run_autosection_backfill(params, log_func)
             else:
                 return {'success': False, 'error': f'未知任务类型: {task_type}', 'results': []}
             
@@ -671,6 +683,8 @@ class EngineBridge:
                                     results.append({'name': f, 'path': os.path.join(base_dir, f)})
                                 elif task_type == 'backfill' and '回淤' in f:
                                     results.append({'name': f, 'path': os.path.join(base_dir, f)})
+                                elif task_type == 'autosection_backfill' and ('分层回淤' in f or '合并' in f):
+                                    results.append({'name': f, 'path': os.path.join(base_dir, f)})
                 except Exception as e:
                     log_func(f"[WARN] 扫描输出目录失败: {e}")
             
@@ -687,7 +701,12 @@ class HydraulicCADPlatform(QMainWindow):
     
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("航道断面算量自动化平台 v3.6.0")
+        self.setWindowTitle("航道断面算量自动化平台 v3.7.0")
+        
+        icon_path = Path(__file__).parent.parent / "new_logo.ico"
+        if icon_path.exists():
+            self.setWindowIcon(QIcon(icon_path))
+            
         self.setMinimumSize(1280, 800)
         self.resize(1280, 800)
         
@@ -759,14 +778,14 @@ class HydraulicCADPlatform(QMainWindow):
         left_section.setSpacing(16)
         
         # Logo
-        exclusive_logo_path = Path(r"C:\Users\训教\Downloads\Gemini_Generated_Image_3db1n53db1n53db1.png")
-        if exclusive_logo_path.exists():
+        icon_path = Path(__file__).parent.parent / "new_logo.ico"
+        if icon_path.exists():
             logo_label = QLabel()
-            pixmap = QPixmap(str(exclusive_logo_path)).scaled(48, 48, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
+            pixmap = QPixmap(str(icon_path)).scaled(48, 48, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
             logo_label.setPixmap(pixmap)
             left_section.addWidget(logo_label)
         else:
-            logo_path = Path(__file__).parent.parent / "input_file_0.png"
+            logo_path = Path(__file__).parent.parent / "logo.ico"
             if logo_path.exists():
                 logo_label = QLabel()
                 pixmap = QPixmap(str(logo_path)).scaled(48, 48, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
@@ -852,13 +871,14 @@ class HydraulicCADPlatform(QMainWindow):
             }
         """)
         
-        # 添加标签页 - v3.5更新
+        # 添加标签页 - v3.7更新
         tabs = [
             ("autoline", "断面合并"),
             ("autopaste", "批量粘贴"),
             ("autohatch", "快速填充"),
             ("autosection", "分层算量"),
-            ("backfill", "回淤计算")
+            ("backfill", "回淤计算"),
+            ("autosection_backfill", "分层+回淤")
         ]
         
         for task_id, task_name in tabs:
@@ -970,6 +990,8 @@ class HydraulicCADPlatform(QMainWindow):
             self._create_autosection_params(param_grid)
         elif task_type == "backfill":
             self._create_backfill_params(param_grid)
+        elif task_type == "autosection_backfill":
+            self._create_autosection_backfill_params(param_grid)
         
         param_layout.addLayout(param_grid)
         layout.addWidget(param_section)
@@ -1057,6 +1079,30 @@ class HydraulicCADPlatform(QMainWindow):
         param_grid.addWidget(self.param_design_layer, 0, 0)
         param_grid.addWidget(self.param_backfill_section_layer, 0, 1)
         param_grid.addWidget(self.param_backfill_output_dir, 1, 0, 1, 2)
+    
+    def _create_autosection_backfill_params(self, param_grid):
+        """分层算量+回淤计算合并参数 - v3.7更新"""
+        self.param_combined_elevation = ParamInputWidget("目标高程 (m) [留空则全算量]", "")
+        self.param_combined_pile_layer = ParamInputWidget("桩号图层", "0-桩号")
+        self.param_combined_design_layer = ParamInputWidget("设计断面线图层 (DMX)", "DMX")
+        self.param_combined_update_layer = ParamInputWidget("更新断面线图层", "")
+        self.param_combined_merge_section = ParamCheckboxWidget("合并断面线（下包络）", checked=False)
+        self.param_combined_calc_mode = ParamSelectWidget(
+            "计算模式",
+            [('below', '高程线以下'), ('above', '高程线以上')],
+            default='below'
+        )
+        self.param_combined_distinguish_design = ParamCheckboxWidget("区分设计/超挖量", checked=False)
+        self.param_combined_output_dir = ParamInputWidget("输出目录（留空则同目录）", "", is_path=True)
+        
+        param_grid.addWidget(self.param_combined_elevation, 0, 0)
+        param_grid.addWidget(self.param_combined_pile_layer, 0, 1)
+        param_grid.addWidget(self.param_combined_design_layer, 1, 0)
+        param_grid.addWidget(self.param_combined_update_layer, 1, 1)
+        param_grid.addWidget(self.param_combined_merge_section, 2, 0)
+        param_grid.addWidget(self.param_combined_calc_mode, 2, 1)
+        param_grid.addWidget(self.param_combined_distinguish_design, 3, 0, 1, 2)
+        param_grid.addWidget(self.param_combined_output_dir, 4, 0, 1, 2)
         
     def create_right_panel(self) -> QWidget:
         """创建右侧面板"""
@@ -1147,7 +1193,7 @@ class HydraulicCADPlatform(QMainWindow):
             }
         """)
         
-        self.status_bar.showMessage("引擎版本: v3.6.0 | 核心算法: DXF-SHAPELY")
+        self.status_bar.showMessage("引擎版本: v3.7.0 | 核心算法: DXF-SHAPELY")
         
         copyright_label = QLabel("@黄秉俊")
         copyright_label.setStyleSheet("""
@@ -1177,7 +1223,7 @@ class HydraulicCADPlatform(QMainWindow):
         
     def on_tab_changed(self, index):
         """标签页切换"""
-        tasks = ["autoline", "autopaste", "autohatch", "autosection", "backfill"]
+        tasks = ["autoline", "autopaste", "autohatch", "autosection", "backfill", "autosection_backfill"]
         self.current_task = tasks[index]
         
     def add_log(self, message: str, level: str = "info"):
@@ -1267,6 +1313,18 @@ class HydraulicCADPlatform(QMainWindow):
                 '断面线图层': self.param_backfill_section_layer.get_value(),
                 '设计断面线图层': self.param_design_layer.get_value(),
                 '输出目录': self.param_backfill_output_dir.get_value(),
+                'files': [self.selected_file.get('path')] if self.selected_file else []
+            }
+        elif self.current_task == "autosection_backfill":
+            params = {
+                '目标高程': self.param_combined_elevation.get_value(),
+                '桩号图层': self.param_combined_pile_layer.get_value(),
+                '设计断面线图层': self.param_combined_design_layer.get_value(),
+                '更新断面线图层': self.param_combined_update_layer.get_value(),
+                '合并断面线': self.param_combined_merge_section.is_checked(),
+                '计算模式': self.param_combined_calc_mode.get_value(),
+                '区分设计超挖': self.param_combined_distinguish_design.is_checked(),
+                '输出目录': self.param_combined_output_dir.get_value(),
                 'files': [self.selected_file.get('path')] if self.selected_file else []
             }
             

@@ -8,7 +8,7 @@
 - 目标文件：批量粘贴_目标文件.dxf（L1图层）
 - 验证文件：批量粘贴_目标文件_已粘贴断面.dxf（正确粘贴效果）
 
-代码位置: D:\断面算量平台\Code\autopaste_full_auto.py
+代码位置: D:\\断面算量平台\\Code\\autopaste_full_auto.py
 """
 
 import ezdxf
@@ -278,15 +278,33 @@ def run_autopaste_full_auto(source_path, target_path, output_path=None):
     print(f"  小矩形数: {len(source_basepoints)}")
     print(f"  基点数: {len(source_basepoints)}")
     
+    # 检测源文件桩号
+    source_stations = detect_source_stations(source_msp)
+    print(f"  源桩号数: {len(source_stations)}")
+    
     # 检测目标文件基点
     print(f"\n[检测目标文件]")
     target_basepoints = detect_target_basepoints(target_msp)
     print(f"  L1脊梁线交点数: {len(target_basepoints)}")
     
-    # 匹配基点对
+    # 检测目标文件桩号
+    target_stations = detect_target_stations(target_msp)
+    print(f"  目标桩号数: {len(target_stations)}")
+    
+    # 匹配基点对（优先使用桩号匹配）
     print(f"\n[匹配基点]")
-    matched_pairs = match_basepoints(source_basepoints, target_basepoints)
-    print(f"  匹配对数: {len(matched_pairs)}")
+    
+    if source_stations and target_stations:
+        # 使用桩号匹配
+        matched_pairs, matched_stations = match_by_station(source_basepoints, target_basepoints, source_stations, target_stations)
+        print(f"  桩号匹配模式")
+        print(f"  匹配桩号数: {len(matched_stations)}")
+        print(f"  匹配对数: {len(matched_pairs)}")
+    else:
+        # 使用Y排序匹配（备用）
+        matched_pairs = match_basepoints(source_basepoints, target_basepoints)
+        print(f"  Y排序匹配模式（备用）")
+        print(f"  匹配对数: {len(matched_pairs)}")
     
     # 执行粘贴
     print(f"\n[执行粘贴]")
@@ -350,10 +368,192 @@ def run_autopaste_full_auto(source_path, target_path, output_path=None):
     }
 
 
+def extract_station_from_text(text):
+    """从文本提取桩号"""
+    import re
+    # 匹配桩号格式: K67+400, 67+400, 67+425, 等（支持K前缀）
+    match = re.search(r'K?(\d+)\+(\d+)', text)
+    if match:
+        km = int(match.group(1))
+        m = int(match.group(2))
+        return km * 1000 + m  # 转换为米
+    return None
+
+
+def detect_source_stations(msp):
+    """检测源文件桩号文本（不去重，保留所有文本用于基点匹配）"""
+    stations = []
+    # 搜索所有图层的TEXT实体（桩号可能在LABELS图层）
+    for e in msp.query('TEXT'):
+        try:
+            text = e.dxf.text.strip()
+            station_m = extract_station_from_text(text)
+            if station_m:
+                x = e.dxf.insert.x
+                y = e.dxf.insert.y
+                stations.append({
+                    'station_m': station_m,
+                    'station_text': text,
+                    'x': x,
+                    'y': y,
+                    'entity': e
+                })
+        except: pass
+    
+    # 按桩号排序
+    stations.sort(key=lambda s: s['station_m'])
+    return stations
+
+
+def detect_target_stations(msp):
+    """检测目标文件桩号文本"""
+    stations = []
+    # 搜索所有图层的TEXT实体
+    for e in msp.query('TEXT'):
+        try:
+            text = e.dxf.text.strip()
+            station_m = extract_station_from_text(text)
+            if station_m:
+                x = e.dxf.insert.x
+                y = e.dxf.insert.y
+                stations.append({
+                    'station_m': station_m,
+                    'station_text': text,
+                    'x': x,
+                    'y': y,
+                    'entity': e
+                })
+        except: pass
+    
+    # 按桩号排序
+    stations.sort(key=lambda s: s['station_m'])
+    return stations
+
+
+def match_by_station(source_bps, target_bps, source_stations, target_stations):
+    """按桩号匹配源基点和目标基点
+    
+    匹配逻辑：
+    1. 源端：从基点找最近的桩号文本（建立基点-桩号映射）
+    2. 目标端：当基点数=桩号数时，使用排序顺序匹配；否则用Y距离匹配
+    3. 按桩号匹配源端和目标端基点
+    """
+    pairs = []
+    
+    # 分析源端基点的Y分布
+    if source_bps:
+        source_y_min = min(bp['y'] for bp in source_bps)
+        source_y_max = max(bp['y'] for bp in source_bps)
+        source_y_span = source_y_max - source_y_min
+        # 动态计算阈值：Y跨度 / 基点数 * 2
+        dynamic_threshold = max(500, source_y_span / len(source_bps) * 2)
+    else:
+        dynamic_threshold = 500
+    
+    # 建立基点到桩号的映射（从基点找桩号，避免重复）
+    # 使用基点坐标元组作为键（可哈希）
+    # 源端：每个基点找最近的桩号文本
+    source_bp_station_map = {}
+    for bp in source_bps:
+        bp_key = (bp['x'], bp['y'])  # 用坐标作为键
+        best_station = None
+        best_y_diff = float('inf')
+        for station in source_stations:
+            y_diff = abs(bp['y'] - station['y'])
+            if y_diff < best_y_diff and y_diff < dynamic_threshold:
+                best_y_diff = y_diff
+                best_station = station
+        
+        if best_station:
+            station_m = best_station['station_m']
+            source_bp_station_map[bp_key] = (station_m, bp)  # 存储(station_m, bp引用)
+    
+    # 反向建立桩号到基点的映射
+    source_station_bp_map = {}
+    for bp_key, (station_m, bp) in source_bp_station_map.items():
+        if station_m not in source_station_bp_map:
+            source_station_bp_map[station_m] = []
+        source_station_bp_map[station_m].append(bp)
+    
+    # 源端每个桩号的基点按Y排序（同一桩号可能有多个断面）
+    for station_m in source_station_bp_map:
+        source_station_bp_map[station_m].sort(key=lambda bp: bp['y'], reverse=True)
+    
+    # 目标端匹配策略：
+    # 当基点数=桩号数时，使用排序顺序匹配（第N个基点对应第N个桩号）
+    # 否则用Y距离匹配
+    
+    target_station_bp_map = {}
+    
+    if len(target_bps) == len(target_stations):
+        # 排序顺序匹配：基点按Y排序（从大到小），桩号按值排序（从小到大）
+        target_bps_sorted = sorted(target_bps, key=lambda bp: bp['y'], reverse=True)
+        target_stations_sorted = sorted(target_stations, key=lambda s: s['station_m'])
+        
+        # 第N个基点对应第N个桩号
+        for i in range(len(target_bps_sorted)):
+            bp = target_bps_sorted[i]
+            station = target_stations_sorted[i]
+            station_m = station['station_m']
+            
+            if station_m not in target_station_bp_map:
+                target_station_bp_map[station_m] = []
+            target_station_bp_map[station_m].append(bp)
+    else:
+        # Y距离匹配（备用）
+        target_bp_station_map = {}
+        for bp in target_bps:
+            bp_key = (bp['x'], bp['y'])
+            best_station = None
+            best_y_diff = float('inf')
+            for station in target_stations:
+                y_diff = abs(bp['y'] - station['y'])
+                if y_diff < best_y_diff and y_diff < 500:
+                    best_y_diff = y_diff
+                    best_station = station
+            
+            if best_station:
+                station_m = best_station['station_m']
+                target_bp_station_map[bp_key] = (station_m, bp)
+        
+        # 反向建立桩号到基点的映射
+        for bp_key, (station_m, bp) in target_bp_station_map.items():
+            if station_m not in target_station_bp_map:
+                target_station_bp_map[station_m] = []
+            target_station_bp_map[station_m].append(bp)
+    
+    # 目标端每个桩号的基点按Y排序
+    for station_m in target_station_bp_map:
+        target_station_bp_map[station_m].sort(key=lambda bp: bp['y'], reverse=True)
+    
+    # 按桩号匹配
+    matched_stations = set()
+    for station_m in source_station_bp_map:
+        if station_m in target_station_bp_map:
+            src_bps = source_station_bp_map[station_m]
+            tgt_bps = target_station_bp_map[station_m]
+            
+            # 按顺序匹配同桩号的断面
+            for i in range(min(len(src_bps), len(tgt_bps))):
+                pairs.append({
+                    'source': src_bps[i],
+                    'target': tgt_bps[i],
+                    'station_m': station_m,
+                    'index': len(pairs) + 1
+                })
+            
+            matched_stations.add(station_m)
+    
+    # 按桩号排序输出
+    pairs.sort(key=lambda p: p['station_m'])
+    
+    return pairs, matched_stations
+
+
 def match_basepoints(source_bps, target_bps):
     """匹配源基点和目标基点
     
-    按顺序匹配（都已按Y坐标排序）
+    按桩号匹配（优先），或按顺序匹配（备用）
     """
     pairs = []
     

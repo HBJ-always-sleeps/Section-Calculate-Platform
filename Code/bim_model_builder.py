@@ -284,7 +284,8 @@ class SectionDetector:
     def _get_dmx_sections(self) -> List[Dict]:
         """获取DMX图层断面线"""
         dmx_list = []
-        for e in self.msp.query('LWPOLYLINE[layer=="DMX"]'):
+        layer_query = f'LWPOLYLINE[layer=="{self.dmx_layer}"]'
+        for e in self.msp.query(layer_query):
             try:
                 pts = [(p[0], p[1]) for p in e.get_points()]
                 if len(pts) >= 2:
@@ -348,6 +349,144 @@ class SectionDetector:
             except: pass
         return stations
     
+    def _extend_along_direction(self, coords: List[Tuple], l1_ref_y: float, side: str = 'left') -> List[Tuple]:
+        """沿着线的原方向延伸到L1的Y坐标
+        
+        Args:
+            coords: 线段的坐标列表
+            l1_ref_y: L1基准点的Y坐标
+            side: 'left'从最左端延伸或'right'从最右端延伸
+        
+        Returns:
+            延伸后的完整坐标列表
+        """
+        if len(coords) < 2:
+            return coords
+        
+        # 找到coords中X最小和X最大的点及其索引
+        x_values = [c[0] for c in coords]
+        min_x_idx = x_values.index(min(x_values))
+        max_x_idx = x_values.index(max(x_values))
+        
+        # 根据side选择端点和相邻点
+        if side == 'left':
+            end_pt = coords[min_x_idx]
+            if min_x_idx > 0:
+                next_pt = coords[min_x_idx - 1]
+            elif min_x_idx < len(coords) - 1:
+                next_pt = coords[min_x_idx + 1]
+            else:
+                return coords
+        else:
+            end_pt = coords[max_x_idx]
+            if max_x_idx < len(coords) - 1:
+                next_pt = coords[max_x_idx + 1]
+            elif max_x_idx > 0:
+                next_pt = coords[max_x_idx - 1]
+            else:
+                return coords
+        
+        # 计算方向向量（从相邻点指向端点）
+        dx = end_pt[0] - next_pt[0]
+        dy = end_pt[1] - next_pt[1]
+        
+        mag = math.sqrt(dx**2 + dy**2)
+        if mag < 0.001:
+            return coords
+        dx /= mag
+        dy /= mag
+        
+        y_diff = l1_ref_y - end_pt[1]
+        if y_diff <= 0:
+            return coords
+        
+        if abs(dy) < 0.001:
+            new_x = end_pt[0]
+            new_y = l1_ref_y
+        else:
+            t = y_diff / dy
+            if t < 0:
+                t = abs(t)
+            new_x = end_pt[0] + t * dx
+            new_y = end_pt[1] + t * dy
+        
+        if abs(new_y - l1_ref_y) > 10:
+            new_y = l1_ref_y
+        
+        if side == 'left':
+            return [(new_x, new_y)] + list(coords)
+        else:
+            return list(coords) + [(new_x, new_y)]
+    
+    def _get_excav_lines_extended(self, section_bounds: Dict, l1_ref_y: float) -> List[List[Tuple]]:
+        """获取延伸后的开挖线坐标（只取最左和最右两条线）"""
+        boundary_box = box(
+            section_bounds['x_min'] - 20, 
+            section_bounds['y_min'] - 30, 
+            section_bounds['x_max'] + 20, 
+            section_bounds['y_max'] + 10
+        )
+        
+        local_lines = []
+        for e in self.msp.query('LWPOLYLINE[layer=="开挖线"]'):
+            ls = EntityHelper.to_linestring(e)
+            if ls and boundary_box.intersects(ls):
+                coords = list(ls.coords)
+                if len(coords) >= 2:
+                    x_min = min(c[0] for c in coords)
+                    x_max = max(c[0] for c in coords)
+                    local_lines.append({'coords': coords, 'x_min': x_min, 'x_max': x_max})
+        
+        if not local_lines:
+            return []
+        
+        # 只取最左和最右两条线
+        result_coords = []
+        
+        leftmost = min(local_lines, key=lambda x: x['x_min'])
+        extended_left = self._extend_along_direction(leftmost['coords'], l1_ref_y, 'left')
+        result_coords.append(extended_left)
+        
+        rightmost = max(local_lines, key=lambda x: x['x_max'])
+        extended_right = self._extend_along_direction(rightmost['coords'], l1_ref_y, 'right')
+        result_coords.append(extended_right)
+        
+        return result_coords
+    
+    def _get_overbreak_lines_extended(self, section_bounds: Dict, l1_ref_y: float) -> List[List[Tuple]]:
+        """获取延伸后的超挖线坐标（只取最左和最右两条线）"""
+        boundary_box = box(
+            section_bounds['x_min'] - 20, 
+            section_bounds['y_min'] - 30, 
+            section_bounds['x_max'] + 20, 
+            section_bounds['y_max'] + 10
+        )
+        
+        local_lines = []
+        for e in self.msp.query('LWPOLYLINE[layer=="超挖线"]'):
+            ls = EntityHelper.to_linestring(e)
+            if ls and boundary_box.intersects(ls):
+                coords = list(ls.coords)
+                if len(coords) >= 2:
+                    x_min = min(c[0] for c in coords)
+                    x_max = max(c[0] for c in coords)
+                    local_lines.append({'coords': coords, 'x_min': x_min, 'x_max': x_max})
+        
+        if not local_lines:
+            return []
+        
+        result_coords = []
+        
+        leftmost = min(local_lines, key=lambda x: x['x_min'])
+        extended_left = self._extend_along_direction(leftmost['coords'], l1_ref_y, 'left')
+        result_coords.append(extended_left)
+        
+        rightmost = max(local_lines, key=lambda x: x['x_max'])
+        extended_right = self._extend_along_direction(rightmost['coords'], l1_ref_y, 'right')
+        result_coords.append(extended_right)
+        
+        return result_coords
+
     def _get_overbreak_lines(self) -> List[LineString]:
         """获取超挖线"""
         lines = []
@@ -736,10 +875,23 @@ class L1ReferencePointDetector:
 class BIMModelBuilder:
     """BIM模型构建器"""
     
-    def __init__(self, dxf_path: str):
+    def __init__(self, dxf_path: str, dmx_layer: str = 'DMX'):
         self.dxf_path = dxf_path
-        self.doc = ezdxf.readfile(dxf_path)
-        self.msp = self.doc.modelspace()
+        self.dmx_layer = dmx_layer  # 断面线图层名
+        # 尝试多种编码打开 DXF 文件
+        for encoding in ['utf-8', 'gbk', 'gb2312', 'latin-1']:
+            try:
+                self.doc = ezdxf.readfile(dxf_path, encoding=encoding)
+                self.msp = self.doc.modelspace()
+                break
+            except UnicodeDecodeError:
+                continue
+        else:
+            # 如果都失败，使用默认方式（不指定编码）
+            import warnings
+            warnings.warn(f"无法使用已知编码打开 {dxf_path}，尝试使用默认编码")
+            self.doc = ezdxf.readfile(dxf_path)
+            self.msp = self.doc.modelspace()
         self.metadata = BIMModelMetadata(file_name=os.path.basename(dxf_path))
         
     def build_model(self) -> BIMModelMetadata:
@@ -1207,16 +1359,34 @@ class BIMViewer:
 
 # ==================== 主程序入口 ====================
 
-def main():
-    """主程序"""
+def main(input_path=None, output_path=None, dmx_layer='DMX'):
+    """
+    主函数 - 可被外部调用
+    
+    Args:
+        input_path: 输入DXF文件路径
+        output_path: 输出元数据JSON文件路径
+        dmx_layer: 断面线图层名（默认: DMX）
+    """
     import argparse
     
+    # 如果提供了参数，直接使用
+    if input_path is not None and output_path is not None:
+        # 构建模型
+        builder = BIMModelBuilder(input_path, dmx_layer=dmx_layer)
+        metadata = builder.build_model()
+        builder.save_metadata(output_path)
+        return metadata
+    
+    # 否则使用argparse解析命令行参数
     parser = argparse.ArgumentParser(description='BIM Model Builder')
-    parser.add_argument('--input', '-i', type=str, 
-                       default=r'D:\断面算量平台\测试文件\内湾段分层图（全航道底图20260331）2007面积比例0.6.dxf',
+    parser.add_argument('--input', '-i', type=str,
+                       default=r'D:\断面算量平台\测试文件\内湾段分层图（全航道底图20260331）2018.dxf',
                        help='Input DXF file path')
     parser.add_argument('--output', '-o', type=str, default=None,
                        help='Output metadata JSON file path')
+    parser.add_argument('--dmx-layer', type=str, default='DMX',
+                       help='断面线图层名（默认: DMX）')
     parser.add_argument('--view', '-v', action='store_true',
                        help='Launch 3D visualization viewer')
     parser.add_argument('--gallery', '-g', action='store_true',
@@ -1243,7 +1413,7 @@ def main():
     args = parser.parse_args()
     
     # 构建模型
-    builder = BIMModelBuilder(args.input)
+    builder = BIMModelBuilder(args.input, dmx_layer=args.dmx_layer)
     metadata = builder.build_model()
     
     # 保存元数据

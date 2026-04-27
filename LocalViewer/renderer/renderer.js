@@ -119,19 +119,98 @@ function initEventListeners() {
     if (btnResetView) {
         btnResetView.addEventListener('click', resetView);
     }
-    
+
+    // 视图切换按钮
+    const btnViewTop = document.getElementById('btn-view-top');
+    if (btnViewTop) {
+        btnViewTop.addEventListener('click', () => setView('top'));
+    }
+
+    const btnViewFront = document.getElementById('btn-view-front');
+    if (btnViewFront) {
+        btnViewFront.addEventListener('click', () => setView('front'));
+    }
+
+    const btnViewSide = document.getElementById('btn-view-side');
+    if (btnViewSide) {
+        btnViewSide.addEventListener('click', () => setView('side'));
+    }
+
+    // 截图按钮
+    const btnScreenshot = document.getElementById('btn-screenshot');
+    if (btnScreenshot) {
+        btnScreenshot.addEventListener('click', takeScreenshot);
+    }
+
+    // 全屏按钮
+    const btnFullscreen = document.getElementById('btn-fullscreen');
+    if (btnFullscreen) {
+        btnFullscreen.addEventListener('click', toggleFullscreen);
+    }
+
+    // 透明度滑块
+    const opacitySlider = document.getElementById('opacity-slider');
+    const opacityValue = document.getElementById('opacity-value');
+    if (opacitySlider) {
+        opacitySlider.addEventListener('input', (e) => {
+            const opacity = e.target.value / 100;
+            if (opacityValue) opacityValue.textContent = `${e.target.value}%`;
+            setModelOpacity(opacity);
+        });
+    }
+
+    // 线框模式切换
+    const wireframeToggle = document.getElementById('wireframe-toggle');
+    if (wireframeToggle) {
+        wireframeToggle.addEventListener('change', (e) => {
+            setWireframeMode(e.target.checked);
+        });
+    }
+
+    // 剖面切割控制
+    const clippingSection = document.getElementById('clipping-section');
+    const btnClipping = document.getElementById('btn-clipping');
+    if (btnClipping) {
+        btnClipping.addEventListener('click', () => {
+            if (clippingSection) {
+                clippingSection.style.display = clippingSection.style.display === 'none' ? 'block' : 'none';
+            }
+        });
+    }
+
+    const clipX = document.getElementById('clip-x');
+    const clipY = document.getElementById('clip-y');
+    const clipZ = document.getElementById('clip-z');
+    if (clipX) clipX.addEventListener('input', updateClipping);
+    if (clipY) clipY.addEventListener('input', updateClipping);
+    if (clipZ) clipZ.addEventListener('input', updateClipping);
+
+    const btnResetClipping = document.getElementById('btn-reset-clipping');
+    if (btnResetClipping) {
+        btnResetClipping.addEventListener('click', resetClipping);
+    }
+
+    // 键盘快捷键
+    document.addEventListener('keydown', handleKeyboard);
+
     // 侧边栏折叠按钮
     const btnCollapseSidebar = document.getElementById('btn-collapse-sidebar');
     if (btnCollapseSidebar) {
         btnCollapseSidebar.addEventListener('click', toggleSidebar);
     }
-    
+
     // 侧边栏展开按钮（折叠状态下显示）
     const sidebarExpandBtn = document.getElementById('sidebar-expand-btn');
     if (sidebarExpandBtn) {
         sidebarExpandBtn.addEventListener('click', expandSidebar);
     }
-    
+
+    // 鼠标移动显示坐标
+    const canvas = document.getElementById('viewer-canvas');
+    if (canvas) {
+        canvas.addEventListener('mousemove', updateMouseCoords);
+    }
+
     console.log('[Renderer] Event listeners initialized');
 }
 
@@ -171,7 +250,10 @@ function onFileDrop(e) {
 // 加载模型
 function loadModel(data) {
     showLoading(true, `正在加载 ${data.fileName}...`);
-    
+
+    // 清除之前的模型
+    clearCurrentModel();
+
     try {
         if (data.type === 'obj') {
             loadOBJModel(data);
@@ -186,8 +268,31 @@ function loadModel(data) {
         // 即使出错也隐藏拖放区域，避免遮挡
         hideDropZone();
     }
-    
+
     showLoading(false);
+}
+
+// 清除当前模型
+function clearCurrentModel() {
+    if (AppState.currentModel) {
+        AppState.scene.remove(AppState.currentModel);
+        // 释放几何体和材质内存
+        AppState.currentModel.traverse((child) => {
+            if (child.geometry) {
+                child.geometry.dispose();
+            }
+            if (child.material) {
+                if (Array.isArray(child.material)) {
+                    child.material.forEach(mat => mat.dispose());
+                } else {
+                    child.material.dispose();
+                }
+            }
+        });
+        AppState.currentModel = null;
+        AppState.layers.clear();
+        console.log('[Renderer] Previous model cleared');
+    }
 }
 
 // 加载OBJ模型
@@ -402,6 +507,7 @@ function animate() {
     requestAnimationFrame(animate);
     AppState.controls.update();
     AppState.renderer.render(AppState.scene, AppState.camera);
+    updateFPS();
 }
 
 // UI辅助函数
@@ -532,6 +638,221 @@ function extractLayers(object) {
     });
     
     console.log('[Renderer] Layers extracted:', materialGroups.size);
+}
+
+// ========== 新增功能实现 ==========
+
+// 视图切换
+function setView(viewType) {
+    if (!AppState.boundingBox) return;
+
+    const size = AppState.boundingBox.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+
+    switch (viewType) {
+        case 'top':
+            AppState.camera.position.set(0, maxDim * 2, 0);
+            AppState.camera.up.set(0, 0, -1);
+            break;
+        case 'front':
+            AppState.camera.position.set(0, 0, maxDim * 2);
+            AppState.camera.up.set(0, 1, 0);
+            break;
+        case 'side':
+            AppState.camera.position.set(maxDim * 2, 0, 0);
+            AppState.camera.up.set(0, 1, 0);
+            break;
+    }
+
+    AppState.controls.target.set(0, 0, 0);
+    AppState.controls.update();
+    showStatus(`已切换到${viewType === 'top' ? '俯' : viewType === 'front' ? '前' : '侧'}视图`);
+}
+
+// 截图功能
+function takeScreenshot() {
+    AppState.renderer.render(AppState.scene, AppState.camera);
+    const dataURL = AppState.renderer.domElement.toDataURL('image/png');
+
+    const link = document.createElement('a');
+    link.download = `screenshot_${Date.now()}.png`;
+    link.href = dataURL;
+    link.click();
+
+    showStatus('截图已保存');
+}
+
+// 全屏切换
+function toggleFullscreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+        showStatus('退出全屏');
+    } else {
+        document.documentElement.requestFullscreen();
+        showStatus('进入全屏');
+    }
+}
+
+// 设置模型透明度
+function setModelOpacity(opacity) {
+    if (!AppState.currentModel) return;
+
+    AppState.currentModel.traverse((child) => {
+        if (child.isMesh && child.material) {
+            child.material.transparent = opacity < 1;
+            child.material.opacity = opacity;
+        }
+    });
+}
+
+// 设置线框模式
+function setWireframeMode(enabled) {
+    if (!AppState.currentModel) return;
+
+    AppState.currentModel.traverse((child) => {
+        if (child.isMesh && child.material) {
+            child.material.wireframe = enabled;
+        }
+    });
+    showStatus(enabled ? '线框模式开启' : '线框模式关闭');
+}
+
+// 剖面切割
+function updateClipping() {
+    const clipX = document.getElementById('clip-x');
+    const clipY = document.getElementById('clip-y');
+    const clipZ = document.getElementById('clip-z');
+
+    if (!clipX || !clipY || !clipZ || !AppState.currentModel) return;
+
+    const xVal = clipX.value / 100;
+    const yVal = clipY.value / 100;
+    const zVal = clipZ.value / 100;
+
+    if (!AppState.boundingBox) return;
+
+    const size = AppState.boundingBox.getSize(new THREE.Vector3());
+
+    // 创建切割平面
+    const clipPlanes = [];
+
+    if (xVal !== 0) {
+        const xPos = -size.x / 2 + size.x * (xVal + 1) / 2;
+        clipPlanes.push(new THREE.Plane(new THREE.Vector3(1, 0, 0), -xPos));
+    }
+    if (yVal !== 0) {
+        const yPos = -size.y / 2 + size.y * (yVal + 1) / 2;
+        clipPlanes.push(new THREE.Plane(new THREE.Vector3(0, 1, 0), -yPos));
+    }
+    if (zVal !== 0) {
+        const zPos = -size.z / 2 + size.z * (zVal + 1) / 2;
+        clipPlanes.push(new THREE.Plane(new THREE.Vector3(0, 0, 1), -zPos));
+    }
+
+    AppState.currentModel.traverse((child) => {
+        if (child.isMesh && child.material) {
+            child.material.clippingPlanes = clipPlanes;
+            child.material.clipShadows = true;
+            child.material.side = THREE.DoubleSide;
+        }
+    });
+
+    AppState.renderer.localClippingEnabled = true;
+}
+
+// 重置剖面切割
+function resetClipping() {
+    const clipX = document.getElementById('clip-x');
+    const clipY = document.getElementById('clip-y');
+    const clipZ = document.getElementById('clip-z');
+
+    if (clipX) clipX.value = 0;
+    if (clipY) clipY.value = 0;
+    if (clipZ) clipZ.value = 0;
+
+    if (!AppState.currentModel) return;
+
+    AppState.currentModel.traverse((child) => {
+        if (child.isMesh && child.material) {
+            child.material.clippingPlanes = [];
+            child.material.side = THREE.FrontSide;
+        }
+    });
+
+    AppState.renderer.localClippingEnabled = false;
+    showStatus('剖面切割已重置');
+}
+
+// 键盘快捷键
+function handleKeyboard(e) {
+    switch (e.key.toLowerCase()) {
+        case 'r':
+            resetView();
+            break;
+        case '1':
+            setView('top');
+            break;
+        case '2':
+            setView('front');
+            break;
+        case '3':
+            setView('side');
+            break;
+        case 'm':
+            showStatus('测量功能：点击两点测量距离');
+            break;
+        case 'c':
+            const clippingSection = document.getElementById('clipping-section');
+            if (clippingSection) {
+                clippingSection.style.display = clippingSection.style.display === 'none' ? 'block' : 'none';
+            }
+            break;
+    }
+
+    // Ctrl组合键
+    if (e.ctrlKey) {
+        switch (e.key.toLowerCase()) {
+            case 'o':
+                ipcRenderer.send('menu-action', 'open-obj');
+                break;
+            case 's':
+                takeScreenshot();
+                break;
+        }
+    }
+}
+
+// 鼠标坐标更新
+function updateMouseCoords(e) {
+    const coordsEl = document.getElementById('status-coords');
+    if (!coordsEl || !AppState.camera) return;
+
+    const canvas = e.target;
+    const rect = canvas.getBoundingClientRect();
+
+    // 计算鼠标在画布上的位置
+    const x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+    const y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+    coordsEl.textContent = `鼠标: ${x.toFixed(2)}, ${y.toFixed(2)}`;
+}
+
+// FPS计数器
+let frameCount = 0;
+let lastTime = performance.now();
+
+function updateFPS() {
+    frameCount++;
+    const now = performance.now();
+    const elapsed = now - lastTime;
+
+    if (elapsed >= 1000) {
+        const fps = Math.round(frameCount * 1000 / elapsed);
+        const fpsEl = document.getElementById('status-fps');
+        if (fpsEl) fpsEl.textContent = `FPS: ${fps}`;
+        frameCount = 0;
+        lastTime = now;
+    }
 }
 
 // 启动

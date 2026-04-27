@@ -47,6 +47,10 @@ Thumbs.db
 .env
 
 # Large files (>100MB) - excluded from Git
-测试文件/legacy_tests/断面算量测试L.dxf
-测试文件/legacy_tests/断面算量测试L_RESULT.dxf
-测试文件/legacy_tests/断面算量测试L_填充完成.dxf
+*.dxf
+*.obj
+*.mtl
+*.html
+*.bak
+*.dwl
+测试文件/

@@ -145,10 +145,22 @@ def analyze_coordinate_system(matches: List[Dict]) -> Dict:
         'sample_count': len(matches)
     }
 
-def main():
-    spine_json = r'D:\断面算量平台\测试文件\内湾底图_脊梁点.json'
-    section_json = r'D:\断面算量平台\测试文件\内湾段分层图（全航道底图20260331）2018面积比例0.6_bim_metadata.json'
-    output_json = r'D:\断面算量平台\测试文件\脊梁点_L1匹配结果.json'
+def main(spine_json=None, section_json=None, output_json=None):
+    """
+    主函数 - 可被外部调用
+    
+    Args:
+        spine_json: 脊梁点JSON路径
+        section_json: 断面元数据JSON路径
+        output_json: 输出匹配结果JSON路径
+    """
+    # 使用默认路径如果未提供
+    if spine_json is None:
+        spine_json = r'D:\断面算量平台\测试文件\内湾底图_脊梁点.json'
+    if section_json is None:
+        section_json = r'D:\断面算量平台\测试文件\内湾段分层图（全航道底图20260331）2018_bim_metadata.json'
+    if output_json is None:
+        output_json = r'D:\断面算量平台\测试文件\脊梁点_L1匹配结果.json'
     
     print("=" * 60)
     print("脊梁点与L1基准点坐标匹配")
@@ -181,7 +193,7 @@ def main():
         print(f"      断面中心: ({m['section_center_x']:.2f}, {m['section_center_y']:.2f})")
         print(f"      L1基准点: ({m['l1_x']:.2f}, {m['l1_y']:.2f})")
     
-    # 5. 保存结果
+# 5. 保存结果
     print(f"\n[5] 保存到: {output_json}")
     output_data = {
         'spine_source': spine_json,
@@ -194,8 +206,31 @@ def main():
         json.dump(output_data, f, ensure_ascii=False, indent=2)
     
     print("\n" + "=" * 60)
+    
+    # 如果匹配数为0，输出警告并返回非0退出码
+    if len(matches) == 0:
+        print("警告: 未匹配到任何脊梁点与L1基准点!")
+        print("可能原因:")
+        print("  1. DXF文件中L1图层为空或线条方向不符合要求")
+        print("  2. 断面元数据中缺少L1_ref_point信息")
+        return 1
+    
     print("完成!")
     print("=" * 60)
+    return 0
 
 if __name__ == '__main__':
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description='脊梁点与断面匹配脚本')
+    parser.add_argument('--spine', type=str,
+                       default=r'D:\断面算量平台\测试文件\内湾底图_脊梁点.json',
+                       help='脊梁点JSON文件路径')
+    parser.add_argument('--metadata', type=str,
+                       default=r'D:\断面算量平台\测试文件\内湾段分层图（全航道底图20260331）2018_bim_metadata.json',
+                       help='断面元数据JSON文件路径')
+    parser.add_argument('--output', '-o', type=str,
+                       default=r'D:\断面算量平台\测试文件\脊梁点_L1匹配结果.json',
+                       help='输出匹配结果JSON文件路径')
+    args = parser.parse_args()
+    exit_code = main(spine_json=args.spine, section_json=args.metadata, output_json=args.output)
+    exit(exit_code if exit_code else 0)

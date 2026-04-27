@@ -19,7 +19,7 @@ def start_backend():
     """启动后端服务"""
     print("[后端] 正在启动 FastAPI 服务...")
     
-    backend_script = PROJECT_ROOT / "Code" / "server.py"
+    backend_script = PROJECT_ROOT / "server.py"
     
     # 使用系统 Python（避免 venv 缺少依赖）
     cmd = ["python", str(backend_script)]
@@ -40,7 +40,7 @@ def start_frontend():
     """启动前端界面"""
     print("[前端] 正在启动 PyQt6 界面...")
     
-    frontend_script = PROJECT_ROOT / "Code" / "platform_ui_v3.py"
+    frontend_script = PROJECT_ROOT / "platform_ui_v3.py"
     
     # 使用系统 Python
     cmd = ["python", str(frontend_script)]
